@@ -1,0 +1,10 @@
+import Header from '../components/Header';
+
+export default function FavoriteRecipes() {
+  return (
+    <>
+      <Header title="Favorite Recipes" search={ false } profile />
+      <div>FavoriteRecipes</div>
+    </>
+  );
+}
