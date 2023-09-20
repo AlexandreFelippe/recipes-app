@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValid, setIsValid] = useState(false);
+  const navigate = useNavigate();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newEmail = e.target.value;
@@ -25,7 +27,11 @@ function Login() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    localStorage.setItem('user', JSON.stringify({ email }));
   };
+  function handleClick() {
+    navigate('/meals');
+  }
 
   return (
     <div>
@@ -50,6 +56,7 @@ function Login() {
           />
         </div>
         <button
+          onClick={ handleClick }
           type="submit"
           disabled={ !isValid }
           data-testid="login-submit-btn"
