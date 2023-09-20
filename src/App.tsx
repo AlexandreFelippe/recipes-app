@@ -8,6 +8,8 @@ import MealDetails from './pages/MealDetails';
 import MealProgress from './pages/MealProgress';
 import Profile from './pages/Profiles';
 import DrinkDetails from './pages/DrinkDetails';
+import DrinkProgress from './pages/DrinkProgress';
+import FavoriteRecipies from './pages/FavoriteRecipies';
 
 function App() {
   return (

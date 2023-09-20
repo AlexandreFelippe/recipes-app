@@ -1,10 +1,10 @@
 import Header from '../components/Header';
 
-export default function DoneRecipies() {
+export default function DoneRecipes() {
   return (
     <>
-      <Header title="Done Recipies" search={ false } profile />
-      <h1>Done Recipies</h1>
+      <Header title="Done Recipes" search={ false } profile />
+      <div>DoneRecipes</div>
     </>
   );
 }
