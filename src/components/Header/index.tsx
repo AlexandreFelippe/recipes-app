@@ -21,7 +21,15 @@ export default function Header({ title, search, profile }: HeaderProps) {
     <header>
       <h1 data-testid="page-title">{title}</h1>
       {search && (
-        <img src={ searchIcon } alt="pesquisar" data-testid="search-top-btn" />
+        <button
+          onClick={ toggleSearchVisibility }
+        >
+          <img
+            src={ searchIcon }
+            alt="pesquisar"
+            data-testid="search-top-btn"
+          />
+        </button>
       )}
       {profile && (
         <button
@@ -30,11 +38,10 @@ export default function Header({ title, search, profile }: HeaderProps) {
           <img src={ profileIcon } alt="perfil" data-testid="profile-top-btn" />
         </button>
       )}
-      <button onClick={ toggleSearchVisibility }>Toggle Search</button>
       {isSearchVisible && (
         <input
-          type="text"
           data-testid="search-input"
+          type="text"
           placeholder="Digite sua busca"
         />
       )}
