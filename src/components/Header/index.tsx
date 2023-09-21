@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import searchIcon from '../../images/searchIcon.svg';
 import profileIcon from '../../images/profileIcon.svg';
 
@@ -9,13 +10,26 @@ type HeaderProps = {
 };
 
 export default function Header({ title, search, profile }: HeaderProps) {
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
   const navigate = useNavigate();
+
+  function toggleSearchVisibility() {
+    setIsSearchVisible(!isSearchVisible);
+  }
 
   return (
     <header>
       <h1 data-testid="page-title">{title}</h1>
       {search && (
-        <img src={ searchIcon } alt="pesquisar" data-testid="search-top-btn" />
+        <button
+          onClick={ toggleSearchVisibility }
+        >
+          <img
+            src={ searchIcon }
+            alt="pesquisar"
+            data-testid="search-top-btn"
+          />
+        </button>
       )}
       {profile && (
         <button
@@ -23,6 +37,13 @@ export default function Header({ title, search, profile }: HeaderProps) {
         >
           <img src={ profileIcon } alt="perfil" data-testid="profile-top-btn" />
         </button>
+      )}
+      {isSearchVisible && (
+        <input
+          data-testid="search-input"
+          type="text"
+          placeholder="Digite sua busca"
+        />
       )}
     </header>
   );
