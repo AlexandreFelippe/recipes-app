@@ -35,9 +35,7 @@ describe('Login page', () => {
     renderWithRouter(<Login />);
     fireEvent.change(screen.getByTestId(emailInput), { target: { value } });
     fireEvent.change(screen.getByTestId(passwordInput), { target: { value: 'valid-password' } });
-
     fireEvent.click(screen.getByTestId(loginButton));
-
     const storedUser = JSON.parse(localStorage.getItem('user') as string);
     expect(storedUser).toEqual({ email: 'valid-email@example.com' });
   });
