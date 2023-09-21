@@ -1,43 +1,44 @@
-import { fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import Login from '../pages/Login/Login';
 import renderWithRouter from '../renderwithRouter';
 
-test('renderiza o formulário de login', () => {
-  const { getByText, getByTestId, user } = renderWithRouter(<Login />);
+describe('Login page', () => {
+  const emailInput = 'email-input';
+  const passwordInput = 'password-input';
+  const loginButton = 'login-submit-btn';
+  const value = 'valid-email@example.com';
 
-  const loginHeader = getByText('Login');
-  const emailInput = getByTestId('email-input');
-  const passwordInput = getByTestId('password-input');
-  const submitButton = getByTestId('login-submit-btn');
+  test('renders login form', () => {
+    renderWithRouter(<Login />);
+    expect(screen.getByText('Login')).toBeInTheDocument();
+    expect(screen.getByTestId(emailInput)).toBeInTheDocument();
+    expect(screen.getByTestId(passwordInput)).toBeInTheDocument();
+    expect(screen.getByTestId(loginButton)).toBeInTheDocument();
+  });
 
-  user.type(emailInput, 'trybe@gmail.com');
-  user.type(passwordInput, '1234567');
-  user.click(submitButton);
-  expect(loginHeader).toBeInTheDocument();
-  expect(emailInput).toBeInTheDocument();
-  expect(passwordInput).toBeInTheDocument();
-  expect(submitButton).toBeInTheDocument();
+  test('disables login button when form is invalid', () => {
+    renderWithRouter(<Login />);
+    expect(screen.getByTestId(loginButton)).toBeDisabled();
+    fireEvent.change(screen.getByTestId(emailInput), { target: { value: 'invalid-email' } });
+    fireEvent.change(screen.getByTestId(passwordInput), { target: { value: '123' } });
+    expect(screen.getByTestId(loginButton)).toBeDisabled();
+  });
 
-  /*  expect(screen.getByText('/meals')).toBeInTheDocument(); */
+  test('enables login button when form is valid', () => {
+    renderWithRouter(<Login />);
+    fireEvent.change(screen.getByTestId(emailInput), { target: { value } });
+    fireEvent.change(screen.getByTestId(passwordInput), { target: { value: 'valid-password' } });
+    expect(screen.getByTestId(loginButton)).not.toBeDisabled();
+  });
+
+  test('submits form with valid email to local storage', () => {
+    renderWithRouter(<Login />);
+    fireEvent.change(screen.getByTestId(emailInput), { target: { value } });
+    fireEvent.change(screen.getByTestId(passwordInput), { target: { value: 'valid-password' } });
+
+    fireEvent.click(screen.getByTestId(loginButton));
+
+    const storedUser = JSON.parse(localStorage.getItem('user') as string);
+    expect(storedUser).toEqual({ email: 'valid-email@example.com' });
+  });
 });
-
-test('valida e-mail e senha corretamente', () => {
-  const { getByTestId } = renderWithRouter(<Login />);
-  const emailInput = getByTestId('email-input');
-  const passwordInput = getByTestId('password-input');
-  const submitButton = getByTestId('login-submit-btn');
-
-  fireEvent.change(emailInput, { target: { value: 'invalid-email' } });
-  fireEvent.change(passwordInput, { target: { value: 'short' } });
-  fireEvent.click(submitButton);
-  expect(submitButton).toBeDisabled();
-});
-
-/* test('redireciona para a tela principal de receitas', () => {
-  const { getByTestId, user } = renderWithRouter(<Login />);
-
-  user.type(emailInput, 'trybe@gmail.com');
-  user.type(passwordInput, '1234567');
-  user.click(submitButton);
-  expect(window.location.pathname).toBe('/meals');
-}); */
