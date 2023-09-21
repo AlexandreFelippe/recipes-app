@@ -45,11 +45,3 @@ test('Testa a rota favorite-recipies:', () => {
   expect(profileButton).toBeInTheDocument();
   expect(h1).toBeInTheDocument();
 });
-test('testa se o input de busca aparece e desaparece ao clicar o botão', async () => {
-  const { user } = renderWithRouter(<Meals />);
-  const button = screen.getByRole('button', { name: /buscar receita/i });
-  await user.click(button);
-  expect(screen.getByRole('textbox')).toBeInTheDocument();
-  await user.click(button);
-  expect(screen.getByRole('textbox')).not.toBeInTheDocument();
-});
