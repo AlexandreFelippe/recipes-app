@@ -67,7 +67,7 @@ export default function Header({ title, search, profile }: HeaderProps) {
         break;
 
       default:
-        console.log('não pegou');
+        console.log('Ainda vou pôr');
     }
   };
 
