@@ -1,10 +1,8 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Route } from 'react-router-dom';
 import renderWithRouter from '../renderwithRouter';
 import Meals from '../pages/Meals';
 import Drinks from '../pages/Drinks';
-import Profile from '../pages/Profiles';
 import DoneRecipes from '../pages/DoneRecipes';
 import FavoriteRecipes from '../pages/FavoriteRecipes';
 import App from '../App';
