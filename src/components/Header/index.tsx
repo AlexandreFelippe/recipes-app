@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import searchIcon from '../../images/searchIcon.svg';
 import profileIcon from '../../images/profileIcon.svg';
+import SearchBar from '../SearchBar';
 
 type HeaderProps = {
   title: string;
@@ -45,6 +46,7 @@ export default function Header({ title, search, profile }: HeaderProps) {
           placeholder="Digite sua busca"
         />
       )}
+      <SearchBar />
     </header>
   );
 }
