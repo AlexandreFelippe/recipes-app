@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/react';
 
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from '../renderwithRouter';
 import App from '../App';
 import renderWithRouterAndRedux from '../utils/renderWithRouterAndRedux';
 
