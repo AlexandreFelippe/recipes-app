@@ -29,6 +29,8 @@ export default function Header({ title, search, profile }: HeaderProps) {
   const [searchDrinks, setsearchDrinks] = useState([]);
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  console.log(searchResults);
+  console.log(searchDrinks);
 
   const toggleSearchVisibility = () => setIsSearchVisible(!isSearchVisible);
 
