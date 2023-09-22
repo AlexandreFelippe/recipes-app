@@ -1,8 +1,12 @@
 import Header from '../components/Header';
+import Recipes from '../components/Recipies';
 
 function Meals() {
   return (
-    <Header title="Meals" search profile />
+    <>
+      <Header title="Meals" search profile />
+      <Recipes />
+    </>
   );
 }
 
