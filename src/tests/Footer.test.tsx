@@ -16,5 +16,6 @@ describe('Footer component', () => {
     const meals = 'meals-bottom-btn';
     await userEvent.click(screen.getByTestId(meals));
     expect(screen.getByTestId('meals-bottom-btn')).toBeInTheDocument();
+    screen.debug();
   });
 });
