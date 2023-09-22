@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderwithRouter';
 import Meals from '../pages/Meals';
@@ -55,4 +55,12 @@ test('Testando o botão do perfil', async () => {
   expect(screen.getByTestId(profileButton)).toBeInTheDocument();
   await userEvent.click(screen.getByTestId(profileButton));
   expect(screen.getByTestId('page-title')).toBeInTheDocument();
+});
+
+test('Testando a rota Profile', async () => {
+  const { user } = renderWithRouter(<App />, { route: '/meals' });
+  const profileButton1 = screen.getByTestId('profile-top-btn');
+  await user.click(profileButton1);
+  expect(window.location.pathname).toBe('/profile');
+  screen.debug();
 });
