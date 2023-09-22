@@ -3,6 +3,7 @@ import { useState } from 'react';
 import searchIcon from '../../images/searchIcon.svg';
 import profileIcon from '../../images/profileIcon.svg';
 import SearchBar from '../SearchBar';
+import { fetchFirstLetter, fetchIngredients, fetchName } from '../../utils/SearchApi';
 
 type HeaderProps = {
   title: string;
@@ -10,13 +11,65 @@ type HeaderProps = {
   profile: boolean;
 };
 
+type FormType = {
+  searchText: string,
+  searchType: string,
+};
+
+const initial = {
+  searchText: '',
+  searchType: '',
+};
+
 export default function Header({ title, search, profile }: HeaderProps) {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
+  const [searchData, setSearchData] = useState<FormType>(initial);
   const navigate = useNavigate();
 
-  function toggleSearchVisibility() {
-    setIsSearchVisible(!isSearchVisible);
-  }
+  const toggleSearchVisibility = () => setIsSearchVisible(!isSearchVisible);
+
+  const handleChange = ({ target: { name, value } }: any) => {
+    const updatedData = {
+      ...searchData,
+      [name]: value,
+    };
+    setSearchData(updatedData);
+  };
+
+  console.log(searchData);
+
+  const handleFetchApi = async () => {
+    switch (searchData.searchType) {
+      case 'ingredient':
+        if (searchData.searchText.length > 1) {
+          const data = await fetchIngredients(searchData.searchText);
+          const result = await data.json();
+          console.log(result);
+        }
+        break;
+
+      case 'name':
+        if (searchData.searchText.length > 1) {
+          const data = await fetchName(searchData.searchText);
+          const result = await data.json();
+          console.log(result);
+        }
+        break;
+
+      case 'letter':
+        if (searchData.searchText.length > 1) {
+          alert('Your search must have only 1 (one) character');
+        } else {
+          const data = await fetchFirstLetter(searchData.searchText);
+          const result = await data.json();
+          console.log(result);
+        }
+        break;
+
+      default:
+        console.log('Ainda vou pôr');
+    }
+  };
 
   return (
     <header>
@@ -43,10 +96,17 @@ export default function Header({ title, search, profile }: HeaderProps) {
         <input
           data-testid="search-input"
           type="text"
+          name="searchText"
+          value={ searchData.searchText }
+          onChange={ handleChange }
           placeholder="Digite sua busca"
         />
       )}
-      <SearchBar />
+      <SearchBar
+        searchData={ searchData }
+        handleChange={ handleChange }
+        handleFetchApi={ handleFetchApi }
+      />
     </header>
   );
 }

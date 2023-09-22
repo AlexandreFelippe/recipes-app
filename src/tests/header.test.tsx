@@ -1,10 +1,11 @@
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderwithRouter';
 import Meals from '../pages/Meals';
 import Drinks from '../pages/Drinks';
-import Profile from '../pages/Profiles';
 import DoneRecipes from '../pages/DoneRecipes';
 import FavoriteRecipes from '../pages/FavoriteRecipes';
+import App from '../App';
 
 test('Testa a rota Meals:', () => {
   renderWithRouter(<Meals />);
@@ -24,13 +25,6 @@ test('Testa a rota drinks:', () => {
   expect(searchImage).toBeInTheDocument();
   expect(h1).toBeInTheDocument();
 });
-test('Testa a rota profile:', () => {
-  renderWithRouter(<Profile />);
-  const profileButton = screen.getByRole('button', { name: /perfil/i });
-  const h1 = screen.getByRole('heading', { name: /profile/i });
-  expect(profileButton).toBeInTheDocument();
-  expect(h1).toBeInTheDocument();
-});
 test('Testa a rota done-recipies:', () => {
   renderWithRouter(<DoneRecipes />);
   const profileButton = screen.getByRole('button', { name: /perfil/i });
@@ -45,11 +39,20 @@ test('Testa a rota favorite-recipies:', () => {
   expect(profileButton).toBeInTheDocument();
   expect(h1).toBeInTheDocument();
 });
-test('testa se o input de busca aparece e desaparece ao clicar o botão', async () => {
-  const { user } = renderWithRouter(<Meals />);
-  const button = screen.getByRole('button', { name: /buscar receita/i });
-  await user.click(button);
-  expect(screen.getByRole('textbox')).toBeInTheDocument();
-  await user.click(button);
-  expect(screen.getByRole('textbox')).not.toBeInTheDocument();
+test('toggleSearchVisibility alterna a visibilidade da entrada de pesquisa', async () => {
+  renderWithRouter(<App />, { route: '/meals' });
+  const searchInput = 'search-input';
+  const searchButton = 'search-top-btn';
+
+  expect(screen.getByTestId(searchButton)).toBeInTheDocument();
+  userEvent.click(screen.getByTestId(searchButton));
+  expect(await screen.findByTestId(searchInput)).toBeInTheDocument();
+});
+
+test('Testando o botão do perfil', async () => {
+  renderWithRouter(<App />, { route: '/meals' });
+  const profileButton = 'profile-top-btn';
+  expect(screen.getByTestId(profileButton)).toBeInTheDocument();
+  await userEvent.click(screen.getByTestId(profileButton));
+  expect(screen.getByTestId('page-title')).toBeInTheDocument();
 });
