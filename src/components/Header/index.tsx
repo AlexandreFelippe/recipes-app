@@ -1,9 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import searchIcon from '../../images/searchIcon.svg';
 import profileIcon from '../../images/profileIcon.svg';
 import SearchBar from '../SearchBar';
-import { fetchFirstLetter, fetchIngredients, fetchName } from '../../utils/SearchApi';
+import { fetchFirstLetter, fetchIngredients, fetchName, fetchFirstLetterDrinks,
+  fetchIngredientsDrinks, fetchNameDrinks } from '../../utils/SearchApi';
 
 type HeaderProps = {
   title: string;
@@ -24,6 +25,9 @@ const initial = {
 export default function Header({ title, search, profile }: HeaderProps) {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchData, setSearchData] = useState<FormType>(initial);
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchDrinks, setsearchDrinks] = useState([]);
+  const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const toggleSearchVisibility = () => setIsSearchVisible(!isSearchVisible);
@@ -36,38 +40,64 @@ export default function Header({ title, search, profile }: HeaderProps) {
     setSearchData(updatedData);
   };
 
-  console.log(searchData);
-
-  const handleFetchApi = async () => {
+  const checkMeals = async () => {
     switch (searchData.searchType) {
       case 'ingredient':
         if (searchData.searchText.length > 1) {
           const data = await fetchIngredients(searchData.searchText);
-          const result = await data.json();
-          console.log(result);
+          setSearchResults(data);
         }
         break;
-
       case 'name':
         if (searchData.searchText.length > 1) {
           const data = await fetchName(searchData.searchText);
-          const result = await data.json();
-          console.log(result);
+          setSearchResults(data);
         }
         break;
-
       case 'letter':
         if (searchData.searchText.length > 1) {
           alert('Your search must have only 1 (one) character');
         } else {
           const data = await fetchFirstLetter(searchData.searchText);
-          const result = await data.json();
-          console.log(result);
+          setSearchResults(data);
         }
         break;
+      default: console.log('Ainda vou pôr');
+    }
+  };
 
-      default:
-        console.log('Ainda vou pôr');
+  const checkDrinks = async () => {
+    switch (searchData.searchType) {
+      case 'ingredient':
+        if (searchData.searchText.length > 1) {
+          const data = await fetchIngredientsDrinks(searchData.searchText);
+          setsearchDrinks(data);
+        }
+        break;
+      case 'name':
+        if (searchData.searchText.length > 1) {
+          const data = await fetchNameDrinks(searchData.searchText);
+          setsearchDrinks(data);
+        }
+        break;
+      case 'letter':
+        if (searchData.searchText.length > 1) {
+          alert('Your search must have only 1 (one) character');
+        } else {
+          const data = await fetchFirstLetterDrinks(searchData.searchText);
+          setSearchResults(data);
+        }
+        break;
+      default: console.log('Ainda vou pôr');
+    }
+  };
+
+  const handleFetchApi = async () => {
+    if (pathname === '/meals') {
+      checkMeals();
+    }
+    if (pathname === '/drinks') {
+      checkDrinks();
     }
   };
 
