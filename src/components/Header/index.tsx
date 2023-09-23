@@ -53,6 +53,10 @@ export default function Header({ title, search, profile }: HeaderProps) {
       case 'ingredient':
         if (searchData.searchText.length > 1) {
           const data = await fetchIngredients(searchData.searchText);
+          if (data === null) {
+            window.alert("Sorry, we haven't found any recipes for these filters.");
+            break;
+          }
           if (data.length === 1) navigate(`/meals/${data[0].idMeal}`);
           setSearchResults(data);
           dispatch(mealsSearch(data));
@@ -62,6 +66,10 @@ export default function Header({ title, search, profile }: HeaderProps) {
       case 'name':
         if (searchData.searchText.length > 1) {
           const data = await fetchName(searchData.searchText);
+          if (data === null) {
+            window.alert("Sorry, we haven't found any recipes for these filters.");
+            break;
+          }
           if (data.length === 1) navigate(`/meals/${data[0].idMeal}`);
           setSearchResults(data);
           dispatch(mealsSearch(data));
@@ -74,6 +82,10 @@ export default function Header({ title, search, profile }: HeaderProps) {
         }
 
         dataa = await fetchFirstLetter(searchData.searchText);
+        if (dataa === null) {
+          window.alert("Sorry, we haven't found any recipes for these filters.");
+          break;
+        }
         if (dataa.length === 1) navigate(`/meals/${dataa[0].idMeal}`);
         setSearchResults(dataa);
         dispatch(mealsSearch(dataa));
@@ -88,6 +100,10 @@ export default function Header({ title, search, profile }: HeaderProps) {
       case 'ingredient':
         if (searchData.searchText.length > 1) {
           const data = await fetchIngredientsDrinks(searchData.searchText);
+          if (data === null) {
+            window.alert("Sorry, we haven't found any recipes for these filters.");
+            break;
+          }
           if (data.length === 1) navigate(`/drinks/${data[0].idDrink}`);
           setsearchDrinks(data);
           dispatch(drinksSearch(data));
@@ -97,6 +113,10 @@ export default function Header({ title, search, profile }: HeaderProps) {
       case 'name':
         if (searchData.searchText.length > 1) {
           const data = await fetchNameDrinks(searchData.searchText);
+          if (data === null) {
+            window.alert("Sorry, we haven't found any recipes for these filters.");
+            break;
+          }
           if (data.length === 1) navigate(`/drinks/${data[0].idDrink}`);
           setsearchDrinks(data);
           dispatch(drinksSearch(data));
@@ -109,6 +129,10 @@ export default function Header({ title, search, profile }: HeaderProps) {
         }
 
         dataa = await fetchFirstLetterDrinks(searchData.searchText);
+        if (dataa === null) {
+          window.alert("Sorry, we haven't found any recipes for these filters.");
+          break;
+        }
         if (dataa.length === 1) navigate(`/drinks/${dataa[0].idDrink}`);
         setsearchDrinks(dataa);
         dispatch(drinksSearch(dataa));
@@ -119,8 +143,18 @@ export default function Header({ title, search, profile }: HeaderProps) {
   };
 
   const handleFetchApi = async () => {
-    if (pathname === '/meals') checkMeals();
-    if (pathname === '/drinks') checkDrinks();
+    if (pathname === '/meals') {
+      checkMeals();
+      /* if (searchResults.length === 0 || searchResults === null) {
+        alert("Sorry, we haven't found any recipes for these filters");
+      } */
+    }
+    if (pathname === '/drinks') {
+      checkDrinks();
+      /* if (searchDrinks.length === 0 || searchDrinks === null) {
+        alert("Sorry, we haven't found any recipes for these filters");
+      } */
+    }
   };
 
   return (
