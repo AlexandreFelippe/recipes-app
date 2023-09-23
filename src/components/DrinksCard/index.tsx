@@ -2,8 +2,8 @@ import { useSelector } from 'react-redux';
 import { ReduxState } from '../../types';
 
 export default function DrinksCard() {
-  const { drinks } = useSelector((state: ReduxState) => state);
-  const drinksData = drinks.drinks.slice(0, 12);
+  const { drinks } = useSelector((state: ReduxState) => state.drinks);
+  const drinksData = drinks.slice(0, 12);
   return (
     <>
       {drinksData.map((drink, index) => (
