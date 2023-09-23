@@ -5,7 +5,16 @@ export type ReduxState = {
   meals: {
     meals: Meals;
   }
+
   drinks: {
+    drinks: Drinks;
+  }
+
+  mealsSearch: {
+    meals: Meals
+  }
+
+  drinksSearch: {
     drinks: Drinks;
   }
 };
