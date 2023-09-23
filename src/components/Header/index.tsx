@@ -1,8 +1,10 @@
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import searchIcon from '../../images/searchIcon.svg';
 import profileIcon from '../../images/profileIcon.svg';
 import SearchBar from '../SearchBar';
+import { mealsSearch, drinksSearch } from '../../redux/actions';
 import { fetchFirstLetter, fetchIngredients, fetchName, fetchFirstLetterDrinks,
   fetchIngredientsDrinks, fetchNameDrinks } from '../../utils/SearchApi';
 
@@ -29,10 +31,10 @@ export default function Header({ title, search, profile }: HeaderProps) {
   const [searchDrinks, setsearchDrinks] = useState<any>([]);
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  console.log(searchResults);
+  // console.log(searchResults);
   console.log(searchDrinks);
-  const params = useParams();
-  console.log(params);
+
+  const dispatch = useDispatch();
 
   const toggleSearchVisibility = () => setIsSearchVisible(!isSearchVisible);
 
@@ -53,6 +55,7 @@ export default function Header({ title, search, profile }: HeaderProps) {
           const data = await fetchIngredients(searchData.searchText);
           if (data.length === 1) navigate(`/meals/${data[0].idMeal}`);
           setSearchResults(data);
+          dispatch(mealsSearch(data));
         }
         break;
 
@@ -61,6 +64,7 @@ export default function Header({ title, search, profile }: HeaderProps) {
           const data = await fetchName(searchData.searchText);
           if (data.length === 1) navigate(`/meals/${data[0].idMeal}`);
           setSearchResults(data);
+          dispatch(mealsSearch(data));
         }
         break;
 
@@ -72,6 +76,7 @@ export default function Header({ title, search, profile }: HeaderProps) {
         dataa = await fetchFirstLetter(searchData.searchText);
         if (dataa.length === 1) navigate(`/meals/${dataa[0].idMeal}`);
         setSearchResults(dataa);
+        dispatch(mealsSearch(dataa));
         break;
 
       default: console.log('Ainda vou pôr');
@@ -85,6 +90,7 @@ export default function Header({ title, search, profile }: HeaderProps) {
           const data = await fetchIngredientsDrinks(searchData.searchText);
           if (data.length === 1) navigate(`/drinks/${data[0].idDrink}`);
           setsearchDrinks(data);
+          dispatch(drinksSearch(data));
         }
         break;
 
@@ -93,6 +99,7 @@ export default function Header({ title, search, profile }: HeaderProps) {
           const data = await fetchNameDrinks(searchData.searchText);
           if (data.length === 1) navigate(`/drinks/${data[0].idDrink}`);
           setsearchDrinks(data);
+          dispatch(drinksSearch(data));
         }
         break;
 
@@ -104,6 +111,7 @@ export default function Header({ title, search, profile }: HeaderProps) {
         dataa = await fetchFirstLetterDrinks(searchData.searchText);
         if (dataa.length === 1) navigate(`/drinks/${dataa[0].idDrink}`);
         setsearchDrinks(dataa);
+        dispatch(drinksSearch(dataa));
         break;
 
       default: console.log('Ainda vou pôr');
