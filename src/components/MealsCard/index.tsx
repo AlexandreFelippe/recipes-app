@@ -2,8 +2,8 @@ import { useSelector } from 'react-redux';
 import { ReduxState } from '../../types';
 
 export default function MealsCard() {
-  const { meals } = useSelector((state: ReduxState) => state);
-  const mealsData = meals.meals.slice(0, 12);
+  const { meals } = useSelector((state: ReduxState) => state.meals);
+  const mealsData = meals.slice(0, 12);
   return (
     <>
       {mealsData.map((meal, index) => (
