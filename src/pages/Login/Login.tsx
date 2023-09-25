@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import tomate from '../../images/tomate.svg';
+import logoRecipes from '../../images/logo Recipes App.svg';
+import styles from './login.module.css';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -34,8 +37,12 @@ function Login() {
   }
 
   return (
-    <div>
-      <h2>Login</h2>
+    <body className={ styles.container }>
+      <header className={ styles.header }>
+        <img className={ styles.logo } src={ logoRecipes } alt="logo recipes" />
+        <img className={ styles.tomato } src={ tomate } alt="tomate" />
+        <h2>Login</h2>
+      </header>
       <form onSubmit={ handleSubmit }>
         <div>
           <p>email:</p>
@@ -64,7 +71,7 @@ function Login() {
           Entrar
         </button>
       </form>
-    </div>
+    </body>
   );
 }
 

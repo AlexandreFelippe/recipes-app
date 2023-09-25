@@ -1,0 +1,38 @@
+body {
+  margin-bottom: 500px;
+  overflow-x: hidden; /* Impede a rolagem horizontal */
+  padding: 0;
+}
+
+.container {
+  align-items: center;
+  background: #94adab;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  padding: 5% 0;
+  width: 100%; /* Ocupa 100% da largura da tela */
+}
+
+.logo {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  height: 30vh;
+  justify-content: center;
+  margin-left: 8vh;
+  max-height: 150%;
+  width: 30vw;
+}
+
+.tomato {
+  align-items: center;
+  background-size: contain;
+  display: flex;
+  flex-shrink: 0;
+  height: auto;
+  justify-content: center;
+  max-height: 60vh;
+  max-width: 70vw;
+  width: auto;
+}

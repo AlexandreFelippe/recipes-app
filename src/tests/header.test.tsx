@@ -1,14 +1,14 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import renderWithRouterAndRedux from '../utils/renderWithRouterAndRedux';
 import Meals from '../pages/Meals';
 import Drinks from '../pages/Drinks';
 import DoneRecipes from '../pages/DoneRecipes';
 import FavoriteRecipes from '../pages/FavoriteRecipes';
 import App from '../App';
-import renderWithRouterAndRedux from '../utils/renderWithRouterAndRedux';
 
 test('Testa a rota Meals:', () => {
-  renderWithRouterAndRedux(<Meals />);
+  renderWithRouterAndReduxAndRedux(<Meals />);
   const searchImage = screen.getByRole('img', { name: /pesquisar/i });
   const profileButton = screen.getByRole('button', { name: /perfil/i });
   const h1 = screen.getByRole('heading', { name: /meals/i });
