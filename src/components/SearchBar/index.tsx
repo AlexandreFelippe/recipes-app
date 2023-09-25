@@ -53,7 +53,6 @@ function SearchBar({ searchData, handleChange, handleFetchApi }: SearchBarProps)
         data-testid="exec-search-btn"
       >
         Search
-
       </button>
     </div>
   );

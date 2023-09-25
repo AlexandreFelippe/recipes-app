@@ -1,4 +1,4 @@
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import searchIcon from '../../images/searchIcon.svg';
@@ -7,6 +7,7 @@ import SearchBar from '../SearchBar';
 import { mealsSearch, drinksSearch } from '../../redux/actions';
 import { fetchFirstLetter, fetchIngredients, fetchName, fetchFirstLetterDrinks,
   fetchIngredientsDrinks, fetchNameDrinks } from '../../utils/SearchApi';
+import CategoryFilter from '../CategoryFilter/Index';
 
 type HeaderProps = {
   title: string;
@@ -179,20 +180,23 @@ export default function Header({ title, search, profile }: HeaderProps) {
         </button>
       )}
       {isSearchVisible && (
-        <input
-          data-testid="search-input"
-          type="text"
-          name="searchText"
-          value={ searchData.searchText }
-          onChange={ handleChange }
-          placeholder="Digite sua busca"
-        />
+        <>
+          <input
+            data-testid="search-input"
+            type="text"
+            name="searchText"
+            value={ searchData.searchText }
+            onChange={ handleChange }
+            placeholder="Digite sua busca"
+          />
+          <SearchBar
+            searchData={ searchData }
+            handleChange={ handleChange }
+            handleFetchApi={ handleFetchApi }
+          />
+        </>
       )}
-      <SearchBar
-        searchData={ searchData }
-        handleChange={ handleChange }
-        handleFetchApi={ handleFetchApi }
-      />
+      <CategoryFilter />
     </header>
   );
 }
