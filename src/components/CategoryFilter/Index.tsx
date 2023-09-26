@@ -11,11 +11,11 @@ export default function CategoryFilter() {
   const [drinksFilter, setDrinksFilter] = useState<any>([]);
   const [mealsCategory, setMealsCategory] = useState<any>([]);
   const [drinksCategory, setDrinksCategory] = useState<any>([]);
+  const [toggleMeals, setToggleMeals] = useState(false);
+  const [toggleDrinks, setToggleDrink] = useState(false);
   const { pathname } = useLocation();
   const mealsSlice = mealsCategory.slice(0, 5);
   const drinksSlice = drinksCategory.slice(0, 5);
-  const mealsFilterSlice = mealsFilter.slice(0, 12);
-  const drinksFilterSlice = drinksFilter.slice(0, 12);
 
   const dispatch = useDispatch();
   // console.log(drinksFilter);
@@ -31,17 +31,31 @@ export default function CategoryFilter() {
   }, []);
 
   const handleClickFilterMeals = async (e: any) => {
-    const name = e.target.innerText;
-    const data = await fetchMealsFiltered(name);
-    dispatch(mealsCategorySearch(data));
-    setMealsFilter(data);
+    if (toggleMeals === false) {
+      const name = e.target.innerText;
+      const data = await fetchMealsFiltered(name);
+      dispatch(mealsCategorySearch(data));
+      setMealsFilter(data);
+      setToggleMeals(true);
+    }
+    if (toggleMeals === true) {
+      dispatch(removeCategory());
+      setToggleMeals(false);
+    }
   };
 
   const handleClickFilterDrinks = async (e: any) => {
-    const name = e.target.innerText;
-    const data = await fetchDrinksFiltered(name);
-    dispatch(drinksCategorySearch(data));
-    setDrinksFilter(data);
+    if (toggleDrinks === false) {
+      const name = e.target.innerText;
+      const data = await fetchDrinksFiltered(name);
+      dispatch(drinksCategorySearch(data));
+      setDrinksFilter(data);
+      setToggleDrink(true);
+    }
+    if (toggleDrinks === true) {
+      dispatch(removeCategory());
+      setToggleDrink(false);
+    }
   };
 
   const handleResetCategory = () => {
