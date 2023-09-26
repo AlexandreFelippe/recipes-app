@@ -1,6 +1,7 @@
 import { useParams, useLocation } from 'react-router-dom';
 import DrinkDetails from '../../components/DrinkDetails';
 import MealDetails from '../../components/MealDetails';
+import StartRecipesBtn from '../../components/StartRecipeBtn';
 
 function RecipesDetails() {
   const { id } = useParams();
@@ -13,6 +14,7 @@ function RecipesDetails() {
     <>
       {mealsUrl() && <MealDetails />}
       {drinksUrl() && <DrinkDetails />}
+      <StartRecipesBtn />
     </>
   );
 }
