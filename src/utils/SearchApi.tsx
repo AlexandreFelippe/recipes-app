@@ -61,3 +61,15 @@ export const fetchDrinksApi = async () => {
   const results = await data.drinks;
   return results;
 };
+
+export const fetchMealsCategory = async () => {
+  const data = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+  const response = await data.json();
+  return response.meals;
+};
+
+export const fetchDrinksCategory = async () => {
+  const data = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
+  const response = await data.json();
+  return response.drinks;
+};
