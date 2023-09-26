@@ -8,7 +8,7 @@ import FavoriteRecipes from '../pages/FavoriteRecipes';
 import App from '../App';
 
 test('Testa a rota Meals:', () => {
-  renderWithRouterAndReduxAndRedux(<Meals />);
+  renderWithRouterAndRedux(<Meals />);
   const searchImage = screen.getByRole('img', { name: /pesquisar/i });
   const profileButton = screen.getByRole('button', { name: /perfil/i });
   const h1 = screen.getByRole('heading', { name: /meals/i });
