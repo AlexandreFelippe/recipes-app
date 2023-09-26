@@ -1,12 +1,15 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
-import { fetchDrinksRecipesDetails } from '../utils/SearchApi';
+import { fetchDrinksRecipesDetails, fetchMealsApi } from '../utils/SearchApi';
 
 export default function DrinkDetails() {
   const [drinks, setDrinks] = useState<any>();
+  const [mealsRecommended, setMealsRecommended] = useState<any>();
+
   const { id } = useParams();
-  console.log(drinks);
+  // console.log(drinks);
+  console.log(mealsRecommended);
 
   useEffect(() => {
     if (!id) return;
@@ -14,6 +17,8 @@ export default function DrinkDetails() {
       try {
         const dataDrinks = await fetchDrinksRecipesDetails(id);
         if (dataDrinks) setDrinks(dataDrinks);
+        const dataMeals = await fetchMealsApi();
+        setMealsRecommended(dataMeals);
       } catch (error) {
         console.error('Erro ao buscar detalhes da refeição:', error);
       }
