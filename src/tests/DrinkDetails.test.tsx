@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import DrinkDetails from '../pages/DrinkDetails';
+import DrinkDetails from '../components/DrinkDetails';
 import renderWithRouter from '../renderwithRouter';
 
 describe('DrinkDetails page', () => {

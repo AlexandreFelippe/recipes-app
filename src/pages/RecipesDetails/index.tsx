@@ -1,6 +1,6 @@
 import { useParams, useLocation } from 'react-router-dom';
-import DrinkDetails from '../DrinkDetails';
-import MealDetails from '../MealDetails';
+import DrinkDetails from '../../components/DrinkDetails';
+import MealDetails from '../../components/MealDetails';
 
 function RecipesDetails() {
   const { id } = useParams();

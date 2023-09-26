@@ -1,0 +1,27 @@
+.container-recommended-meals {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.meals-recommended{
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  width: 324px;
+}
+
+.meals-img {
+  width: 163.33px;
+}
+
+.card-recommended-meals {
+  align-items: center;
+  border: 1px solid #b1b1b1;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  margin-left: 2px;
+  margin-right: 2px;
+  scroll-snap-align: start;
+}
