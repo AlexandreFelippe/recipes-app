@@ -17,6 +17,14 @@ export type ReduxState = {
   drinksSearch: {
     drinks: Drinks;
   }
+
+  mealsCategorySearch: {
+    meals: Meals
+  }
+
+  drinksCategorySearch: {
+    drinks: Drinks
+  }
 };
 
 export type Drink = {
