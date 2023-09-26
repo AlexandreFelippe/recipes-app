@@ -8,6 +8,8 @@ import DrinksCard from '../DrinksCard';
 import DrinksSearchCard from '../DrinksSearchCard';
 import MealsSearchCard from '../MealsSearchCard';
 import { ReduxState } from '../../types';
+import DrinksCategoryCard from '../DrinksCategoryCard/Index';
+import MealsCategoryCard from '../MealsCategoryCard/Index';
 
 export default function Recipes() {
   const { pathname } = useLocation();
@@ -15,7 +17,11 @@ export default function Recipes() {
   const dispatch = useDispatch();
   const { meals } = useSelector((state: ReduxState) => state.mealsSearch);
   const { drinks } = useSelector((state: ReduxState) => state.drinksSearch);
-  console.log(drinks.length);
+  const filterCategoryMeals = useSelector((state: ReduxState) => state
+    .mealsCategorySearch);
+  const filterCategoryDrinks = useSelector((state: ReduxState) => state
+    .drinksCategorySearch);
+  console.log(filterCategoryMeals.meals);
 
   useEffect(() => {
     if (pathname === '/drinks') {
@@ -36,11 +42,17 @@ export default function Recipes() {
   }, []);
 
   const checkDrinks = () => {
-    if (pathname === '/drinks' && drinks.length === 0) return true;
+    if (pathname === '/drinks' && drinks.length === 0
+    && filterCategoryDrinks.drinks.length === 0) {
+      return true;
+    }
   };
 
   const checkMeals = () => {
-    if (pathname === '/meals' && meals.length === 0) return true;
+    if (pathname === '/meals' && meals.length === 0
+    && filterCategoryMeals.meals.length === 0) {
+      return true;
+    }
   };
 
   return (
@@ -49,6 +61,8 @@ export default function Recipes() {
       { checkMeals() && <MealsCard /> }
       { drinks.length > 0 && <DrinksSearchCard />}
       { meals.length > 0 && <MealsSearchCard />}
+      { filterCategoryMeals.meals.length && <MealsCategoryCard />}
+      { filterCategoryDrinks.drinks.length && <DrinksCategoryCard />}
     </>
   );
 }
