@@ -10,7 +10,7 @@ export default function DrinkDetails() {
 
   const { id } = useParams();
   // console.log(drinks);
-  const mealsRecommendedSlice = mealsRecommended.slice(0, 6);
+  const mealsSlice = mealsRecommended.slice(0, 6);
 
   useEffect(() => {
     if (!id) return;
@@ -78,7 +78,7 @@ export default function DrinkDetails() {
       <h3>Recomendados</h3>
       <div className="container-recommended-meals">
         <div className="meals-recommended">
-          {Array.isArray(mealsRecommendedSlice) && mealsRecommendedSlice.map((meal, index) => (
+          {Array.isArray(mealsSlice) && mealsSlice.map((meal, index) => (
             <div
               data-testid={ `${index}-recommendation-card` }
               key={ meal.strMealThumb }
