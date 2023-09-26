@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/dom';
-import MealDetails from '../pages/MealDetails';
+import MealDetails from '../components/MealDetails';
 import renderWithRouter from '../renderwithRouter';
 
 describe('MealDetails page', () => {

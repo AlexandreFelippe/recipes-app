@@ -1,14 +1,17 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import { fetchMealsRecipesDetails, fetchDrinksApi } from '../utils/SearchApi';
+import Header from '../Header';
+import { fetchMealsRecipesDetails, fetchDrinksApi } from '../../utils/SearchApi';
+import './styles.css';
 
 export default function MealDetails() {
   const [meals, setMeals] = useState<any>();
-  const [drinksRecommended, setDrinksRecommended] = useState<any>();
+  const [drinksRecommended, setDrinksRecommended] = useState<any>([]);
 
   const { id } = useParams();
-  console.log(meals);
+  // console.log(meals);
+
+  const drinksRecommendedSlice = drinksRecommended.slice(0, 6);
 
   useEffect(() => {
     if (!id) return;
@@ -82,6 +85,31 @@ export default function MealDetails() {
           </li>
         ))}
       </ul>
+      <h3>Recomendados</h3>
+      <div className="container-recommended-drinks">
+        <div className="drinks-recommended">
+          {Array.isArray(drinksRecommendedSlice) && drinksRecommendedSlice.map((drink, index) => (
+            <div
+              data-testid={ `${index}-recommendation-card` }
+              key={ drink.strDrink }
+              className="card-recommended-drinks"
+            >
+              <h3
+                data-testid={ `${index}-recommendation-title` }
+              >
+                {drink.strDrink }
+
+              </h3>
+              <img
+                className="drinks-img"
+                src={ drink.strDrinkThumb }
+                alt={ drink.strDrink }
+                data-testid="recipe-photo"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </>
   );
 }
