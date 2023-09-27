@@ -60,6 +60,31 @@ export default function MealDetails() {
       .catch((error) => console.error('Erro ao copiar link:', error));
   };
 
+  const isFavorited = () => {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
+    return favoriteRecipes.some((recipe: any) => recipe.id === id);
+  };
+
+  const saveFavorite = () => {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
+    if (isFavorited()) {
+      const newFavorites = favoriteRecipes.filter((recipe: any) => recipe.id !== id);
+      localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
+    } else {
+      const newFavorite = {
+        id,
+        type: 'meal',
+        nationality: meals[0].strArea,
+        category: meals[0].strCategory,
+        alcoholicOrNot: '',
+        name: meals[0].strMeal,
+        image: meals[0].strMealThumb,
+      };
+      localStorage
+        .setItem('favoriteRecipes', JSON.stringify([...favoriteRecipes, newFavorite]));
+    }
+  };
+
   return (
     <>
       <Header title="MealsDetails" search={ false } profile />
@@ -70,7 +95,7 @@ export default function MealDetails() {
             <button data-testid="share-btn" onClick={ handleShareClick }>
               <img src={ share } alt="share" />
             </button>
-            <button data-testid="favorite-btn">Favorite</button>
+            <button data-testid="favorite-btn" onClick={ saveFavorite }>Favorite</button>
             { copied && <span>Link copied!</span> }
           </div>
           <img
