@@ -1,10 +1,6 @@
 import './style.css';
 
-function ContinueRecipeBtn() {
-  const handleClick = () => {
-    console.log('Vou aplicar depois');
-  };
-
+function ContinueRecipeBtn({ handleClick }: any) {
   return (
     <button
       className="start-recipes-btn"

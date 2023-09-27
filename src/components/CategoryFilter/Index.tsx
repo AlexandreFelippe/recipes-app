@@ -17,8 +17,8 @@ export default function CategoryFilter() {
   const mealsSlice = mealsCategory.slice(0, 5);
   const drinksSlice = drinksCategory.slice(0, 5);
 
-  // console.log(mealsFilter);
-  // console.log(drinksFilter);
+  console.log(mealsFilter);
+  console.log(drinksFilter);
 
   const dispatch = useDispatch();
   // console.log(drinksFilter);
