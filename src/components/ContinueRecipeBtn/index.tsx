@@ -1,16 +1,16 @@
 import './style.css';
 
-function StartRecipeBtn({ handleClick }: any) {
+function ContinueRecipeBtn({ handleClick }: any) {
   return (
     <button
       className="start-recipes-btn"
       data-testid="start-recipe-btn"
       onClick={ handleClick }
     >
-      Start Recipe
+      Continue Recipe
 
     </button>
   );
 }
 
-export default StartRecipeBtn;
+export default ContinueRecipeBtn;

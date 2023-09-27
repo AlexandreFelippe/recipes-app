@@ -20,8 +20,8 @@ function App() {
         <Route path="/drinks" element={ <Drinks /> } />
         <Route path="/meals/:id" element={ <RecipesDetails /> } />
         <Route path="/drinks/:id" element={ <RecipesDetails /> } />
-        <Route path="/meals/:id-da-receita/in-progress" element={ <MealProgress /> } />
-        <Route path="/drinks/:id-da-receita/in-progress" element={ <DrinkProgress /> } />
+        <Route path="/meals/:id/in-progress" element={ <MealProgress /> } />
+        <Route path="/drinks/:id/in-progress" element={ <DrinkProgress /> } />
         <Route path="/profile" element={ <Profile /> } />
         <Route path="/done-recipes" element={ <DoneRecipes /> } />
         <Route path="/favorite-recipes" element={ <FavoriteRecipes /> } />
