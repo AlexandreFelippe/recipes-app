@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { fetchDrinksApi, fetchMealsApi } from '../../utils/SearchApi';
@@ -13,7 +13,6 @@ import MealsCategoryCard from '../MealsCategoryCard/Index';
 
 export default function Recipes() {
   const { pathname } = useLocation();
-  const [selectedCategory, setselectedCategory] = useState<string | undefined>(undefined);
   const dispatch = useDispatch();
   const { meals } = useSelector((state: ReduxState) => state.mealsSearch);
   const { drinks } = useSelector((state: ReduxState) => state.drinksSearch);
@@ -39,7 +38,7 @@ export default function Recipes() {
       };
       mealsApi();
     }
-  }, []);
+  }, [dispatch, pathname]);
 
   const checkDrinks = () => {
     if (pathname === '/drinks' && drinks.length === 0

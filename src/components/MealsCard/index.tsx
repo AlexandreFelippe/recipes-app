@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReduxState } from '../../types';
-import drinks from '../../redux/reducers/drinksDefault';
 
 export default function MealsCard() {
   const { meals } = useSelector((state: ReduxState) => state.meals);
