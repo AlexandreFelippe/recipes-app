@@ -1,10 +1,10 @@
 .container-recommended-drinks {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
 }
 
-.drinks-recommended{
+.drinks-recommended {
   display: flex;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
