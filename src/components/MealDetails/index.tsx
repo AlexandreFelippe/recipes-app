@@ -55,7 +55,11 @@ export default function MealDetails() {
       <Header title="MealsDetails" search={ false } profile />
       {Array.isArray(meals) && meals.map((meal: any, index: any) => (
         <div key={ index }>
-          <h3 data-testid="recipe-title">{meal.strMeal }</h3>
+          <div>
+            <h3 data-testid="recipe-title">{meal.strMeal }</h3>
+            <button data-testid="share-btn">Share</button>
+            <button data-testid="favorite-btn">Favorite</button>
+          </div>
           <img
             src={ meal.strMealThumb }
             alt={ meal.strMeal }

@@ -53,7 +53,11 @@ export default function DrinkDetails() {
       <Header title="DrinkDetails" search={ false } profile />
       {Array.isArray(drinks) && drinks.map((drink: any, index: any) => (
         <div key={ index }>
-          <h3 data-testid="recipe-title">{ drink.strDrink }</h3>
+          <div>
+            <h3 data-testid="recipe-title">{ drink.strDrink }</h3>
+            <button data-testid="share-btn">Share</button>
+            <button data-testid="favorite-btn">Favorite</button>
+          </div>
           <img
             data-testid="recipe-photo"
             src={ drink.strDrinkThumb }
