@@ -1,11 +1,11 @@
 import { screen, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
+// import { vi } from 'vitest';
 import renderWithRouterAndRedux from '../utils/renderWithRouterAndRedux';
-import beefMeals from '../utils/mocks/BeefMeals';
+// import beefMeals from '../utils/mocks/BeefMeals';
 import App from '../App';
-import { cocoaDrinks } from '../utils/mocks/CocoaDrinks';
+// import { cocoaDrinks } from '../utils/mocks/CocoaDrinks';
 
-const rotaFetch = '../utils/SearchApi';
+// const rotaFetch = '../utils/SearchApi';
 
 // describe('testes dos filtros de Comida do Header', () => {
 //   beforeEach(() => {

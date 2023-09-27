@@ -28,12 +28,8 @@ const initial = {
 export default function Header({ title, search, profile }: HeaderProps) {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchData, setSearchData] = useState<FormType>(initial);
-  const [searchResults, setSearchResults] = useState<any>([]);
-  const [searchDrinks, setsearchDrinks] = useState<any>([]);
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  // console.log(searchResults);
-  console.log(searchDrinks);
 
   const dispatch = useDispatch();
 
@@ -47,52 +43,52 @@ export default function Header({ title, search, profile }: HeaderProps) {
     setSearchData(updatedData);
   };
 
-  let dataa;
+  // let dataa;
+
+  const handleApiResponse = (data: any, type: string) => {
+    if (data === null) {
+      window.alert("Sorry, we haven't found any recipes for these filters.");
+      return;
+    }
+
+    if (data.length === 1) {
+      navigate(`/${type}/${data[0][type === 'meals' ? 'idMeal' : 'idDrink']}`);
+      return;
+    }
+
+    if (type === 'meals') {
+      dispatch(mealsSearch(data));
+    } else {
+      dispatch(drinksSearch(data));
+    }
+  };
+
+  const fetchAndHandle = async (fetchFunction: any, type: string) => {
+    const data = await fetchFunction(searchData.searchText);
+    handleApiResponse(data, type);
+  };
 
   const checkMeals = async () => {
     switch (searchData.searchType) {
       case 'ingredient':
         if (searchData.searchText.length > 1) {
-          const data = await fetchIngredients(searchData.searchText);
-          if (data === null) {
-            window.alert("Sorry, we haven't found any recipes for these filters.");
-            break;
-          }
-          if (data.length === 1) navigate(`/meals/${data[0].idMeal}`);
-          setSearchResults(data);
-          dispatch(mealsSearch(data));
+          fetchAndHandle(fetchIngredients, 'meals');
         }
         break;
-
       case 'name':
         if (searchData.searchText.length > 1) {
-          const data = await fetchName(searchData.searchText);
-          if (data === null) {
-            window.alert("Sorry, we haven't found any recipes for these filters.");
-            break;
-          }
-          if (data.length === 1) navigate(`/meals/${data[0].idMeal}`);
-          setSearchResults(data);
-          dispatch(mealsSearch(data));
+          fetchAndHandle(fetchName, 'meals');
         }
         break;
-
       case 'letter':
-        if (searchData.searchText.length > 1) {
+        if (searchData.searchText.length === 1) {
+          fetchAndHandle(fetchFirstLetter, 'meals');
+        } else {
           alert('Your search must have only 1 (one) character');
         }
-
-        dataa = await fetchFirstLetter(searchData.searchText);
-        if (dataa === null) {
-          window.alert("Sorry, we haven't found any recipes for these filters.");
-          break;
-        }
-        if (dataa.length === 1) navigate(`/meals/${dataa[0].idMeal}`);
-        setSearchResults(dataa);
-        dispatch(mealsSearch(dataa));
         break;
-
-      default: console.log('Ainda vou pôr');
+      default:
+        console.log('Ainda vou pôr');
     }
   };
 
@@ -100,61 +96,32 @@ export default function Header({ title, search, profile }: HeaderProps) {
     switch (searchData.searchType) {
       case 'ingredient':
         if (searchData.searchText.length > 1) {
-          const data = await fetchIngredientsDrinks(searchData.searchText);
-          if (data === null) {
-            window.alert("Sorry, we haven't found any recipes for these filters.");
-            break;
-          }
-          if (data.length === 1) navigate(`/drinks/${data[0].idDrink}`);
-          setsearchDrinks(data);
-          dispatch(drinksSearch(data));
+          fetchAndHandle(fetchIngredientsDrinks, 'drinks');
         }
         break;
-
       case 'name':
         if (searchData.searchText.length > 1) {
-          const data = await fetchNameDrinks(searchData.searchText);
-          if (data === null) {
-            window.alert("Sorry, we haven't found any recipes for these filters.");
-            break;
-          }
-          if (data.length === 1) navigate(`/drinks/${data[0].idDrink}`);
-          setsearchDrinks(data);
-          dispatch(drinksSearch(data));
+          fetchAndHandle(fetchNameDrinks, 'drinks');
         }
         break;
-
       case 'letter':
-        if (searchData.searchText.length > 1) {
+        if (searchData.searchText.length === 1) {
+          fetchAndHandle(fetchFirstLetterDrinks, 'drinks');
+        } else {
           alert('Your search must have only 1 (one) character');
         }
-
-        dataa = await fetchFirstLetterDrinks(searchData.searchText);
-        if (dataa === null) {
-          window.alert("Sorry, we haven't found any recipes for these filters.");
-          break;
-        }
-        if (dataa.length === 1) navigate(`/drinks/${dataa[0].idDrink}`);
-        setsearchDrinks(dataa);
-        dispatch(drinksSearch(dataa));
         break;
-
-      default: console.log('Ainda vou pôr');
+      default:
+        console.log('Ainda vou pôr');
     }
   };
 
   const handleFetchApi = async () => {
     if (pathname === '/meals') {
       checkMeals();
-      /* if (searchResults.length === 0 || searchResults === null) {
-        alert("Sorry, we haven't found any recipes for these filters");
-      } */
     }
     if (pathname === '/drinks') {
       checkDrinks();
-      /* if (searchDrinks.length === 0 || searchDrinks === null) {
-        alert("Sorry, we haven't found any recipes for these filters");
-      } */
     }
   };
 

@@ -1,10 +1,10 @@
 .container-recommended-meals {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
 }
 
-.meals-recommended{
+.meals-recommended {
   display: flex;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
