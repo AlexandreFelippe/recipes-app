@@ -7,9 +7,9 @@ import './styles.css';
 export default function MealDetails() {
   const [meals, setMeals] = useState<any>();
   const [drinksRecommended, setDrinksRecommended] = useState<any>([]);
+  const [copied, setCopied] = useState(false);
 
   const { id } = useParams();
-  // console.log(meals);
 
   const drinksSlice = drinksRecommended.slice(0, 6);
 
@@ -50,6 +50,15 @@ export default function MealDetails() {
     return validIngredients;
   };
 
+  const handleShareClick = () => {
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      })
+      .catch((error) => console.error('Erro ao copiar link:', error));
+  };
+
   return (
     <>
       <Header title="MealsDetails" search={ false } profile />
@@ -57,8 +66,9 @@ export default function MealDetails() {
         <div key={ index }>
           <div>
             <h3 data-testid="recipe-title">{meal.strMeal }</h3>
-            <button data-testid="share-btn">Share</button>
+            <button data-testid="share-btn" onClick={ handleShareClick }>Share</button>
             <button data-testid="favorite-btn">Favorite</button>
+            { copied && <span>Link copied!</span> }
           </div>
           <img
             src={ meal.strMealThumb }
