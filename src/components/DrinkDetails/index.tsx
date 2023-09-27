@@ -7,9 +7,10 @@ import './style.css';
 export default function DrinkDetails() {
   const [drinks, setDrinks] = useState<any>();
   const [mealsRecommended, setMealsRecommended] = useState<any>([]);
+  const [copied, setCopied] = useState(false);
 
   const { id } = useParams();
-  // console.log(drinks);
+
   const mealsSlice = mealsRecommended.slice(0, 6);
 
   useEffect(() => {
@@ -48,6 +49,15 @@ export default function DrinkDetails() {
     return validIngredients;
   };
 
+  const handleShareClick = () => {
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      })
+      .catch((error) => console.error('Erro ao copiar link:', error));
+  };
+
   return (
     <>
       <Header title="DrinkDetails" search={ false } profile />
@@ -55,8 +65,9 @@ export default function DrinkDetails() {
         <div key={ index }>
           <div>
             <h3 data-testid="recipe-title">{ drink.strDrink }</h3>
-            <button data-testid="share-btn">Share</button>
+            <button data-testid="share-btn" onClick={ handleShareClick }>Share</button>
             <button data-testid="favorite-btn">Favorite</button>
+            { copied && <span>Link copied!</span> }
           </div>
           <img
             data-testid="recipe-photo"
