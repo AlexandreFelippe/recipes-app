@@ -20,7 +20,7 @@ export default function Recipes() {
     .mealsCategorySearch);
   const filterCategoryDrinks = useSelector((state: ReduxState) => state
     .drinksCategorySearch);
-  console.log(filterCategoryMeals.meals);
+  // console.log(filterCategoryMeals.meals);
 
   useEffect(() => {
     if (pathname === '/drinks') {

@@ -33,6 +33,7 @@ function Login() {
     localStorage.setItem('user', JSON.stringify({ email }));
   };
   function handleClick() {
+    localStorage.setItem('user', JSON.stringify({ email }));
     navigate('/meals');
   }
 
