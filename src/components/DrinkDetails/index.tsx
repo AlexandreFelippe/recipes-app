@@ -3,11 +3,15 @@ import { useEffect, useState } from 'react';
 import Header from '../Header';
 import { fetchDrinksRecipesDetails, fetchMealsApi } from '../../utils/SearchApi';
 import './style.css';
+import share from '../../images/shareIcon.svg';
+import blackHeart from '../../images/blackHeartIcon.svg';
+import whiteHeart from '../../images/whiteHeartIcon.svg';
 
 export default function DrinkDetails() {
   const [drinks, setDrinks] = useState<any>();
   const [mealsRecommended, setMealsRecommended] = useState<any>([]);
   const [copied, setCopied] = useState(false);
+  const [favorite, setFavorite] = useState(false);
 
   const { id } = useParams();
 
@@ -26,6 +30,7 @@ export default function DrinkDetails() {
       }
     };
     fechtsApi();
+    setFavorite(isFavorited());
   }, [id]);
 
   const getIngredients = () => {
@@ -68,6 +73,7 @@ export default function DrinkDetails() {
     if (isFavorited()) {
       const newFavorites = favoriteRecipes.filter((recipe: any) => recipe.id !== id);
       localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
+      setFavorite(false);
     } else {
       const newFavorite = {
         id,
@@ -80,6 +86,7 @@ export default function DrinkDetails() {
       };
       localStorage
         .setItem('favoriteRecipes', JSON.stringify([...favoriteRecipes, newFavorite]));
+      setFavorite(true);
     }
   };
 
@@ -90,8 +97,16 @@ export default function DrinkDetails() {
         <div key={ index }>
           <div>
             <h3 data-testid="recipe-title">{ drink.strDrink }</h3>
-            <button data-testid="share-btn" onClick={ handleShareClick }>Share</button>
-            <button data-testid="favorite-btn" onClick={ saveFavorite }>Favorite</button>
+            <button data-testid="share-btn" onClick={ handleShareClick }>
+              <img src={ share } alt="share" />
+            </button>
+            <input
+              type="image"
+              src={ favorite ? blackHeart : whiteHeart }
+              alt="Favorite"
+              data-testid="favorite-btn"
+              onClick={ saveFavorite }
+            />
             { copied && <span>Link copied!</span> }
           </div>
           <img
