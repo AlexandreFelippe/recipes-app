@@ -4,11 +4,14 @@ import Header from '../Header';
 import { fetchMealsRecipesDetails, fetchDrinksApi } from '../../utils/SearchApi';
 import './styles.css';
 import share from '../../images/shareIcon.svg';
+import blackHeart from '../../images/blackHeartIcon.svg';
+import whiteHeart from '../../images/whiteHeartIcon.svg';
 
 export default function MealDetails() {
   const [meals, setMeals] = useState<any>();
   const [drinksRecommended, setDrinksRecommended] = useState<any>([]);
   const [copied, setCopied] = useState(false);
+  const [favorite, setFavorite] = useState(false);
 
   const { id } = useParams();
 
@@ -26,8 +29,8 @@ export default function MealDetails() {
         console.error('Erro ao buscar detalhes da refeição:', error);
       }
     };
-
     fechtsApi();
+    setFavorite(isFavorited());
   }, [id]);
 
   const getIngredients = () => {
@@ -70,6 +73,7 @@ export default function MealDetails() {
     if (isFavorited()) {
       const newFavorites = favoriteRecipes.filter((recipe: any) => recipe.id !== id);
       localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
+      setFavorite(false);
     } else {
       const newFavorite = {
         id,
@@ -82,6 +86,7 @@ export default function MealDetails() {
       };
       localStorage
         .setItem('favoriteRecipes', JSON.stringify([...favoriteRecipes, newFavorite]));
+      setFavorite(true);
     }
   };
 
@@ -95,7 +100,13 @@ export default function MealDetails() {
             <button data-testid="share-btn" onClick={ handleShareClick }>
               <img src={ share } alt="share" />
             </button>
-            <button data-testid="favorite-btn" onClick={ saveFavorite }>Favorite</button>
+            <input
+              type="image"
+              src={ favorite ? blackHeart : whiteHeart }
+              alt="Favorite"
+              data-testid="favorite-btn"
+              onClick={ saveFavorite }
+            />
             { copied && <span>Link copied!</span> }
           </div>
           <img
