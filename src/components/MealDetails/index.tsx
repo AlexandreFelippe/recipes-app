@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Header from '../Header';
 import { fetchMealsRecipesDetails, fetchDrinksApi } from '../../utils/SearchApi';
 import './styles.css';
+import share from '../../images/shareIcon.svg';
 
 export default function MealDetails() {
   const [meals, setMeals] = useState<any>();
@@ -66,7 +67,9 @@ export default function MealDetails() {
         <div key={ index }>
           <div>
             <h3 data-testid="recipe-title">{meal.strMeal }</h3>
-            <button data-testid="share-btn" onClick={ handleShareClick }>Share</button>
+            <button data-testid="share-btn" onClick={ handleShareClick }>
+              <img src={ share } alt="share" />
+            </button>
             <button data-testid="favorite-btn">Favorite</button>
             { copied && <span>Link copied!</span> }
           </div>
