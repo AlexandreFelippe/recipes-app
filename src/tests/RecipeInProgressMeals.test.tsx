@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
+// import { vi } from 'vitest';
 import renderWithRouterAndRedux from '../utils/renderWithRouterAndRedux';
-import { oneMeal } from '../utils/mocks/spicyArrabiataPenne';
+// import { oneMeal } from '../utils/mocks/spicyArrabiataPenne';
 import App from '../App';
 // import { cocoaDrinks } from '../utils/mocks/CocoaDrinks';
 
