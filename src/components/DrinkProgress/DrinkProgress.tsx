@@ -5,6 +5,9 @@ import './style.css';
 
 export default function DrinkProgress() {
   const [drinks, setDrinks] = useState<any>();
+  const [checkedIngredients, setCheckedIngredients] = useState<boolean[]>(new Array(20)
+    .fill(false));
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -35,6 +38,12 @@ export default function DrinkProgress() {
     return validIngredients;
   };
 
+  const toggleIngredient = (index: number) => {
+    const newChecked = [...checkedIngredients];
+    newChecked[index] = !newChecked[index];
+    setCheckedIngredients(newChecked);
+  };
+
   return (
     <div>
       {Array.isArray(drinks) && drinks.map((drink: any, drinkIndex: any) => (
@@ -51,16 +60,16 @@ export default function DrinkProgress() {
           <p data-testid="instructions">{ drink.strInstructions }</p>
           <ul className="label-ingredient">
             {getIngredients(drink).map((ingredient, index) => (
-              <>
+              <div key={ index }>
                 <label
                   data-testid={ `${index}-ingredient-step` }
-                  key={ index }
+                  style={ { textDecoration: checkedIngredients[index]
+                    ? 'line-through solid rgb(0, 0, 0)' : 'none' } }
                 >
-                  <input type="checkbox" />
+                  <input type="checkbox" onChange={ () => toggleIngredient(index) } />
                   {ingredient}
                 </label>
-                <br key={ index } />
-              </>
+              </div>
             ))}
           </ul>
           <button data-testid="finish-recipe-btn">Finish Recipe</button>

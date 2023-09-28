@@ -3,8 +3,11 @@ import { useParams } from 'react-router-dom';
 import { fetchMealsRecipesDetails } from '../../utils/SearchApi';
 
 export default function MealProgress() {
-  const { id } = useParams();
   const [meals, setMeals] = useState<any>([]);
+  const [checkedIngredients, setCheckedIngredients] = useState<boolean[]>(new Array(20)
+    .fill(false));
+
+  const { id } = useParams();
 
   useEffect(() => {
     if (!id) return;
@@ -38,6 +41,12 @@ export default function MealProgress() {
     return validIngredients;
   };
 
+  const toggleIngredient = (index: number) => {
+    const newChecked = [...checkedIngredients];
+    newChecked[index] = !newChecked[index];
+    setCheckedIngredients(newChecked);
+  };
+
   return (
     <div>
       { Array.isArray(meals) && meals.map((meal: any, mealIndex: any) => (
@@ -53,16 +62,16 @@ export default function MealProgress() {
           <h2 data-testid="recipe-category">{meal.strCategory}</h2>
 
           {getIngredients().map((ingredient, index) => (
-            <>
+            <div key={ index }>
               <label
                 data-testid={ `${index}-ingredient-step` }
-                key={ index }
+                style={ { textDecoration: checkedIngredients[index]
+                  ? 'line-through solid rgb(0, 0, 0)' : 'none' } }
               >
-                <input type="checkbox" />
+                <input type="checkbox" onChange={ () => toggleIngredient(index) } />
                 {ingredient}
               </label>
-              <br key={ index } />
-            </>
+            </div>
           ))}
 
           <p data-testid="instructions">{meal.strInstructions}</p>
