@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchMealsRecipesDetails } from '../../utils/SearchApi';
 import share from '../../images/shareIcon.svg';
@@ -16,7 +16,12 @@ export default function MealProgress() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  console.log(meals);
+  // console.log(meals);
+
+  const isFavorited = useCallback(() => {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
+    return favoriteRecipes.some((recipe: any) => recipe.id === id);
+  }, [id]);
 
   useEffect(() => {
     if (!id) return;
@@ -40,7 +45,7 @@ export default function MealProgress() {
     };
     fechtsApi();
     setFavorite(isFavorited());
-  }, [id]);
+  }, [id, isFavorited]);
 
   const getIngredients = () => {
     if (!meals || !meals.length) return [];
@@ -85,11 +90,6 @@ export default function MealProgress() {
         setTimeout(() => setCopied(false), 2000);
       })
       .catch((error) => console.error('Erro ao copiar link:', error));
-  };
-
-  const isFavorited = () => {
-    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
-    return favoriteRecipes.some((recipe: any) => recipe.id === id);
   };
 
   const saveFavorite = () => {

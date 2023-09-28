@@ -1,10 +1,10 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouterAndRedux from '../utils/renderWithRouterAndRedux';
-import Meals from '../pages/Meals';
-import Drinks from '../pages/Drinks';
-import DoneRecipes from '../pages/DoneRecipes';
-import FavoriteRecipes from '../pages/FavoriteRecipes';
+import Meals from '../pages/Meals/index';
+import Drinks from '../pages/Drinks/index';
+import DoneRecipes from '../pages/DoneRecipes/index';
+import FavoriteRecipes from '../pages/FavoriteRecipes/index';
 import App from '../App';
 
 test('Testa a rota Meals:', () => {
