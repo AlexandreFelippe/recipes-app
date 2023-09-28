@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
-import Login from './pages/Login/Login';
+import Login from './pages/Login';
 import './App.css';
-import DoneRecipes from './pages/DoneRecipes/DoneRecipes';
+import DoneRecipes from './pages/DoneRecipes';
 import Meals from './pages/Meals';
 import Drinks from './pages/Drinks';
-import Profile from './pages/Profiles';
+import Profile from './pages/Profile';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Footer from './components/Footer';
 import RecipesDetails from './pages/RecipesDetails';

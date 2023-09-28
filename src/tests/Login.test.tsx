@@ -1,5 +1,5 @@
 import { screen, fireEvent } from '@testing-library/react';
-import Login from '../pages/Login/Login';
+import Login from '../pages/Login';
 import renderWithRouter from '../renderwithRouter';
 
 describe('Login page', () => {
