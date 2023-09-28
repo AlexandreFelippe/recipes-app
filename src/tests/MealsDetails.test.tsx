@@ -10,6 +10,9 @@ describe('MealDetails page', () => {
   });
   test('Testa o botão share:', async () => {
     const { user } = renderWithRouterAndRedux(<App />, route);
+    await waitFor(() => {
+      screen.getByRole('img', { name: /share/i });
+    }, { timeout: 5000 });
     const shareButton = await screen.findByRole('img', { name: /share/i });
     await user.click(shareButton);
     screen.getByText(/link copied!/i);

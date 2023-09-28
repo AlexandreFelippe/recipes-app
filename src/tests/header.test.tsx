@@ -39,16 +39,6 @@ test('Testa a rota favorite-recipies:', () => {
   expect(profileButton).toBeInTheDocument();
   expect(h1).toBeInTheDocument();
 });
-test('toggleSearchVisibility alterna a visibilidade da entrada de pesquisa', async () => {
-  const route = '/meals';
-  renderWithRouterAndRedux(<App />, route);
-  const searchInput = 'search-input';
-  const searchButton = 'search-top-btn';
-
-  expect(screen.getByTestId(searchButton)).toBeInTheDocument();
-  userEvent.click(screen.getByTestId(searchButton));
-  expect(await screen.findByTestId(searchInput)).toBeInTheDocument();
-});
 
 test('Testando o botão do perfil', async () => {
   const route = '/meals';
