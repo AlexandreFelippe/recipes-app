@@ -41,6 +41,17 @@ export type Meal = {
   idMeal: string;
 };
 
+export type HeaderProps = {
+  title: string;
+  search: boolean;
+  profile: boolean;
+};
+
+export type FormType = {
+  searchText: string,
+  searchType: string,
+};
+
 export type Meals = Meal[];
 
 export type Dispatch = ThunkDispatch<ReduxState, null, AnyAction>;

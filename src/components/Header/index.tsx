@@ -4,21 +4,11 @@ import { useDispatch } from 'react-redux';
 import searchIcon from '../../images/searchIcon.svg';
 import profileIcon from '../../images/profileIcon.svg';
 import SearchBar from '../SearchBar';
+import { HeaderProps, FormType } from '../../types';
 import { mealsSearch, drinksSearch } from '../../redux/actions';
 import { fetchFirstLetter, fetchIngredients, fetchName, fetchFirstLetterDrinks,
   fetchIngredientsDrinks, fetchNameDrinks } from '../../utils/SearchApi';
 import CategoryFilter from '../CategoryFilter/Index';
-
-type HeaderProps = {
-  title: string;
-  search: boolean;
-  profile: boolean;
-};
-
-type FormType = {
-  searchText: string,
-  searchType: string,
-};
 
 const initial = {
   searchText: '',
@@ -42,8 +32,6 @@ export default function Header({ title, search, profile }: HeaderProps) {
     };
     setSearchData(updatedData);
   };
-
-  // let dataa;
 
   const handleApiResponse = (data: any, type: string) => {
     if (data === null) {

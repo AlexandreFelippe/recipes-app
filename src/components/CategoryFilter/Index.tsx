@@ -7,8 +7,6 @@ import { fetchMealsCategory, fetchDrinksCategory,
   fetchDrinksFiltered, fetchMealsFiltered } from '../../utils/SearchApi';
 
 export default function CategoryFilter() {
-  const [mealsFilter, setMealsFilter] = useState<any>([]);
-  const [drinksFilter, setDrinksFilter] = useState<any>([]);
   const [mealsCategory, setMealsCategory] = useState<any>([]);
   const [drinksCategory, setDrinksCategory] = useState<any>([]);
   const [toggleMeals, setToggleMeals] = useState(false);
@@ -17,11 +15,7 @@ export default function CategoryFilter() {
   const mealsSlice = mealsCategory.slice(0, 5);
   const drinksSlice = drinksCategory.slice(0, 5);
 
-  console.log(mealsFilter);
-  console.log(drinksFilter);
-
   const dispatch = useDispatch();
-  // console.log(drinksFilter);
 
   useEffect(() => {
     const fetchApis = async () => {
@@ -38,7 +32,6 @@ export default function CategoryFilter() {
       const name = e.target.innerText;
       const data = await fetchMealsFiltered(name);
       dispatch(mealsCategorySearch(data));
-      setMealsFilter(data);
       setToggleMeals(true);
     }
     if (toggleMeals === true) {
@@ -52,7 +45,6 @@ export default function CategoryFilter() {
       const name = e.target.innerText;
       const data = await fetchDrinksFiltered(name);
       dispatch(drinksCategorySearch(data));
-      setDrinksFilter(data);
       setToggleDrink(true);
     }
     if (toggleDrinks === true) {

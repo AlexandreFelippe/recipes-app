@@ -38,7 +38,7 @@ export default function DrinkDetails() {
     const drink = drinks[0];
     const validIngredients: string[] = [];
 
-    for (let index = 1; index <= 20; index++) {
+    for (let index = 1; index <= 20; index += 1) {
       const ingredientKey = `strIngredient${index}`;
       const measureKey = `strMeasure${index}`;
 
