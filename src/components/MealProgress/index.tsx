@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMealsRecipesDetails } from '../utils/SearchApi';
+import { fetchMealsRecipesDetails } from '../../utils/SearchApi';
 
 export default function MealProgress() {
   const { id } = useParams();
@@ -40,7 +40,7 @@ export default function MealProgress() {
 
   return (
     <div>
-      {meals.map((meal: any, mealIndex: any) => (
+      { Array.isArray(meals) && meals.map((meal: any, mealIndex: any) => (
         <div key={ mealIndex }>
           <img
             src={ meal.strMealThumb }
@@ -53,12 +53,16 @@ export default function MealProgress() {
           <h2 data-testid="recipe-category">{meal.strCategory}</h2>
 
           {getIngredients().map((ingredient, index) => (
-            <li
-              key={ index }
-              data-testid={ `${index}-ingredient-name-and-measure` }
-            >
-              {ingredient}
-            </li>
+            <>
+              <label
+                data-testid={ `${index}-ingredient-step` }
+                key={ index }
+              >
+                <input type="checkbox" />
+                {ingredient}
+              </label>
+              <br key={ index } />
+            </>
           ))}
 
           <p data-testid="instructions">{meal.strInstructions}</p>

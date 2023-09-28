@@ -1,6 +1,6 @@
 import { useLocation, useParams } from 'react-router-dom';
-import DrinkProgress from '../DrinkProgress';
-import MealProgress from '../MealProgress';
+import DrinkProgress from '../../components/DrinkProgress/DrinkProgress';
+import MealProgress from '../../components/MealProgress';
 
 export default function RecipeInProgress() {
   const { pathname } = useLocation();

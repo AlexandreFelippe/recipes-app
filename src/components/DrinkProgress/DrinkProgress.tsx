@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchDrinksRecipesDetails } from '../utils/SearchApi';
+import { fetchDrinksRecipesDetails } from '../../utils/SearchApi';
+import './style.css';
 
 export default function DrinkProgress() {
   const [drinks, setDrinks] = useState<any>();
@@ -48,14 +49,18 @@ export default function DrinkProgress() {
           />
           <p data-testid="recipe-category">{ drink.strAlcoholic }</p>
           <p data-testid="instructions">{ drink.strInstructions }</p>
-          <ul>
+          <ul className="label-ingredient">
             {getIngredients(drink).map((ingredient, index) => (
-              <li
-                key={ index }
-                data-testid={ `${drinkIndex}-${index}-ingredient-name-and-measure` }
-              >
-                {ingredient}
-              </li>
+              <>
+                <label
+                  data-testid={ `${index}-ingredient-step` }
+                  key={ index }
+                >
+                  <input type="checkbox" />
+                  {ingredient}
+                </label>
+                <br key={ index } />
+              </>
             ))}
           </ul>
           <button data-testid="finish-recipe-btn">Finish Recipe</button>

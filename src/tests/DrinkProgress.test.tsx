@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import DrinkProgres from '../pages/DrinkProgress';
+import DrinkProgres from '../components/DrinkProgress/DrinkProgress';
 import renderWithRouter from '../renderwithRouter';
 
 describe('DrinkProgress page', () => {

@@ -1,0 +1,10 @@
+.checkedItem {
+  text-decoration: line-through solid black;
+}
+
+.copyMessage {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
