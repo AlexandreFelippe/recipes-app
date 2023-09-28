@@ -5,6 +5,7 @@ import share from '../images/shareIcon.svg';
 export default function DoneRecipes() {
   const [recipes, setRecipes] = useState<any>([]);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const getStorage = () => {
@@ -16,6 +17,7 @@ export default function DoneRecipes() {
   }, []);
 
   const handleFilter = (filter: string) => {
+    console.log('Filter button clicked:', filter);
     if (filter === 'All') setFilteredRecipes(recipes);
     else {
       setFilteredRecipes(recipes
@@ -23,11 +25,12 @@ export default function DoneRecipes() {
     }
   };
 
-  const handleShareClick = (recipeId: string) => {
-    const urlToCopy = `${window.location.origin}/recipes/${recipeId}`;
+  const handleShareClick = (recipeId: string, recipeType: string) => {
+    const urlToCopy = `${window.location.origin}/${recipeType}s/${recipeId}`;
     navigator.clipboard.writeText(urlToCopy)
       .then(() => {
-        alert('Link copied!');
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
       })
       .catch((error) => console.error('Erro ao copiar link:', error));
   };
@@ -92,8 +95,9 @@ export default function DoneRecipes() {
               src={ share }
               alt="share"
               data-testid={ `${index}-horizontal-share-btn` }
-              onClick={ () => handleShareClick(recipe.id) }
+              onClick={ () => handleShareClick(recipe.id, recipe.type) }
             />
+            { copied && <span>Link copied!</span> }
             <br />
           </div>
         ))}
