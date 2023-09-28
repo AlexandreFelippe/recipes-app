@@ -136,7 +136,7 @@ export default function DrinkProgress() {
       alcoholicOrNot: currentDrink.strAlcoholic,
       name: currentDrink.strDrink,
       image: currentDrink.strDrinkThumb,
-      doneDate: new Date().toISOString().slice(0, 10),
+      doneDate: new Date().toISOString(),
       tags: currentDrink.strTags ? currentDrink.strTags.split(',') : [],
     };
 

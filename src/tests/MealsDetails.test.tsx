@@ -3,7 +3,6 @@ import renderWithRouterAndRedux from '../utils/renderWithRouterAndRedux';
 import App from '../App';
 
 const route = '/meals/52771';
-
 describe('MealDetails page', () => {
   test('renders correctly', () => {
     renderWithRouterAndRedux(<App />, route);
