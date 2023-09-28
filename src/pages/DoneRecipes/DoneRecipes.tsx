@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import share from '../images/shareIcon.svg';
+import { Link } from 'react-router-dom';
+import Header from '../../components/Header';
+import share from '../../images/shareIcon.svg';
 
 export default function DoneRecipes() {
   const [recipes, setRecipes] = useState<any>([]);
@@ -71,12 +72,17 @@ export default function DoneRecipes() {
       <div>
         {filteredRecipes.map((recipe: any, index: number) => (
           <div key={ index }>
-            <img
-              src={ recipe.image }
-              alt={ recipe.name }
-              data-testid={ `${index}-horizontal-image` }
-            />
-
+            <Link
+              to={ recipe.type === 'drink'
+                ? `/drinks/${recipe.id}` : `/meals/${recipe.id}` }
+            >
+              <img
+                src={ recipe.image }
+                alt={ recipe.name }
+                data-testid={ `${index}-horizontal-image` }
+                style={ { width: '200px', height: 'auto' } }
+              />
+            </Link>
             {recipe.type === 'drink' ? (
               <p data-testid={ `${index}-horizontal-top-text` }>
                 {recipe.alcoholicOrNot}
@@ -87,8 +93,12 @@ export default function DoneRecipes() {
                   ? `${recipe.nationality} - ${recipe.category}` : recipe.category}
               </p>
             )}
-
-            <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
+            <Link
+              to={ recipe.type === 'drink'
+                ? `/drinks/${recipe.id}` : `/meals/${recipe.id}` }
+            >
+              <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
+            </Link>
             <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
 
             {recipe.tags

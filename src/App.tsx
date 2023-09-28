@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import './App.css';
-import DoneRecipes from './pages/DoneRecipes';
+import DoneRecipes from './pages/DoneRecipes/DoneRecipes';
 import Meals from './pages/Meals';
 import Drinks from './pages/Drinks';
 import Profile from './pages/Profiles';

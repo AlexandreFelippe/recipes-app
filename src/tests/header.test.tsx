@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouterAndRedux from '../utils/renderWithRouterAndRedux';
 import Meals from '../pages/Meals';
 import Drinks from '../pages/Drinks';
-import DoneRecipes from '../pages/DoneRecipes';
+import DoneRecipes from '../pages/DoneRecipes/DoneRecipes';
 import FavoriteRecipes from '../pages/FavoriteRecipes';
 import App from '../App';
 
