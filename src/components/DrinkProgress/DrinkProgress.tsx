@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchDrinksRecipesDetails } from '../../utils/SearchApi';
-import './style.css';
+import share from '../../images/shareIcon.svg';
+import blackHeart from '../../images/blackHeartIcon.svg';
+import whiteHeart from '../../images/whiteHeartIcon.svg';
 
 export default function DrinkProgress() {
   const [drinks, setDrinks] = useState<any>();
   const [checkedIngredients, setCheckedIngredients] = useState<boolean[]>(new Array(20)
     .fill(false));
+  const [copied, setCopied] = useState(false);
+  const [favorite, setFavorite] = useState(false);
 
   const { id } = useParams();
 
@@ -29,6 +33,7 @@ export default function DrinkProgress() {
       }
     };
     fechtsApi();
+    setFavorite(isFavorited());
   }, [id]);
 
   const getIngredients = (drink: any) => {
@@ -64,12 +69,59 @@ export default function DrinkProgress() {
     localStorage.setItem('inProgressRecipes', JSON.stringify(currentProgress));
   };
 
+  const handleShareClick = () => {
+    const urlToCopy = `${window.location.origin}/drinks/${id}`;
+    navigator.clipboard.writeText(urlToCopy)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      })
+      .catch((error) => console.error('Erro ao copiar link:', error));
+  };
+
+  const isFavorited = () => {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
+    return favoriteRecipes.some((recipe: any) => recipe.id === id);
+  };
+
+  const saveFavorite = () => {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
+    if (isFavorited()) {
+      const newFavorites = favoriteRecipes.filter((recipe: any) => recipe.id !== id);
+      localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
+      setFavorite(false);
+    } else if (drinks) {
+      const drink = drinks[0];
+      const newFavorite = {
+        id,
+        type: 'drink',
+        nationality: '',
+        category: drink.strCategory,
+        alcoholicOrNot: drink.strAlcoholic,
+        name: drink.strDrink,
+        image: drink.strDrinkThumb,
+      };
+      localStorage
+        .setItem('favoriteRecipes', JSON.stringify([...favoriteRecipes, newFavorite]));
+      setFavorite(true);
+    }
+  };
+
   return (
     <div>
       {Array.isArray(drinks) && drinks.map((drink: any, drinkIndex: any) => (
         <div key={ drinkIndex }>
-          <button data-testid="share-btn">Share</button>
-          <button data-testid="favorite-btn">Favorite</button>
+          <button data-testid="share-btn" onClick={ handleShareClick }>
+            <img src={ share } alt="share" />
+          </button>
+          <input
+            type="image"
+            src={ favorite ? blackHeart : whiteHeart }
+            alt="Favorite"
+            data-testid="favorite-btn"
+            onClick={ saveFavorite }
+          />
+          { copied && <span>Link copied!</span> }
           <h3 data-testid="recipe-title">{ drink.strDrink }</h3>
           <img
             data-testid="recipe-photo"
