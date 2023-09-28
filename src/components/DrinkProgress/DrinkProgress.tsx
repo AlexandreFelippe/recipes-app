@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { fetchDrinksRecipesDetails } from '../../utils/SearchApi';
 import share from '../../images/shareIcon.svg';
 import blackHeart from '../../images/blackHeartIcon.svg';
 import whiteHeart from '../../images/whiteHeartIcon.svg';
+import './style.css';
 
 export default function DrinkProgress() {
   const [drinks, setDrinks] = useState<any>();
@@ -13,6 +14,9 @@ export default function DrinkProgress() {
   const [favorite, setFavorite] = useState(false);
 
   const { id } = useParams();
+  const navigate = useNavigate();
+
+  console.log(drinks);
 
   useEffect(() => {
     if (!id) return;
@@ -120,6 +124,27 @@ export default function DrinkProgress() {
     return true;
   };
 
+  const handleNavigate = () => {
+    if (!drinks || !drinks.length) return;
+
+    const currentDrink = drinks[0];
+    const doneRecipe = {
+      id,
+      type: 'drink',
+      nationality: '',
+      category: currentDrink.strCategory,
+      alcoholicOrNot: currentDrink.strAlcoholic,
+      name: currentDrink.strDrink,
+      image: currentDrink.strDrinkThumb,
+      doneDate: new Date().toISOString().slice(0, 10),
+      tags: currentDrink.strTags ? currentDrink.strTags.split(',') : [],
+    };
+
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes') || '[]');
+    localStorage.setItem('doneRecipes', JSON.stringify([...doneRecipes, doneRecipe]));
+    navigate('/done-recipes');
+  };
+
   return (
     <div>
       {Array.isArray(drinks) && drinks.map((drink: any, drinkIndex: any) => (
@@ -162,9 +187,11 @@ export default function DrinkProgress() {
             ))}
           </ul>
           <button
+            className="start-recipes-btn"
             data-testid="finish-recipe-btn"
             disabled={ !activeFinishRecipeButton() }
             style={ { position: 'fixed', bottom: '0' } }
+            onClick={ handleNavigate }
           >
             Finish Recipe
           </button>
