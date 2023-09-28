@@ -1,14 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
-import Login from './pages/Login';
+import Login from './pages/Login/index';
 import './App.css';
-import DoneRecipes from './pages/DoneRecipes';
-import Meals from './pages/Meals';
-import Drinks from './pages/Drinks';
-import Profile from './pages/Profile';
-import FavoriteRecipes from './pages/FavoriteRecipes';
-import Footer from './components/Footer';
-import RecipesDetails from './pages/RecipesDetails';
-import RecipeInProgress from './pages/RecipeInProgress';
+import DoneRecipes from './pages/DoneRecipes/index';
+import Meals from './pages/Meals/index';
+import Drinks from './pages/Drinks/index';
+import Profile from './pages/Profile/index';
+import FavoriteRecipes from './pages/FavoriteRecipes/index';
+import Footer from './components/Footer/index';
+import RecipesDetails from './pages/RecipesDetails/index';
+import RecipeInProgress from './pages/RecipeInProgress/index';
 
 function App() {
   return (
