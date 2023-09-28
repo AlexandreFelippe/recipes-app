@@ -107,6 +107,19 @@ export default function DrinkProgress() {
     }
   };
 
+  const activeFinishRecipeButton = () => {
+    if (!drinks || !drinks.length) return false;
+    const currentDrink = drinks[0];
+    const ingredients = getIngredients(currentDrink);
+
+    for (let index = 0; index < ingredients.length; index += 1) {
+      if (!checkedIngredients[index]) {
+        return false;
+      }
+    }
+    return true;
+  };
+
   return (
     <div>
       {Array.isArray(drinks) && drinks.map((drink: any, drinkIndex: any) => (
@@ -148,7 +161,13 @@ export default function DrinkProgress() {
               </div>
             ))}
           </ul>
-          <button data-testid="finish-recipe-btn">Finish Recipe</button>
+          <button
+            data-testid="finish-recipe-btn"
+            disabled={ !activeFinishRecipeButton() }
+            style={ { position: 'fixed', bottom: '0' } }
+          >
+            Finish Recipe
+          </button>
         </div>
       ))}
     </div>

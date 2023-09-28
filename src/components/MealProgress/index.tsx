@@ -6,7 +6,7 @@ import blackHeart from '../../images/blackHeartIcon.svg';
 import whiteHeart from '../../images/whiteHeartIcon.svg';
 
 export default function MealProgress() {
-  const [meals, setMeals] = useState<any>([]);
+  const [meals, setMeals] = useState<any>();
   const [checkedIngredients, setCheckedIngredients] = useState<boolean[]>(new Array(20)
     .fill(false));
   const [copied, setCopied] = useState(false);
@@ -111,6 +111,17 @@ export default function MealProgress() {
     }
   };
 
+  const activeFinishRecipeButton = () => {
+    if (!meals) return false;
+    const ingredients = getIngredients();
+    for (let index = 0; index < ingredients.length; index += 1) {
+      if (!checkedIngredients[index]) {
+        return false;
+      }
+    }
+    return true;
+  };
+
   return (
     <div>
       { Array.isArray(meals) && meals.map((meal: any, mealIndex: any) => (
@@ -152,7 +163,13 @@ export default function MealProgress() {
           ))}
 
           <p data-testid="instructions">{meal.strInstructions}</p>
-          <button data-testid="finish-recipe-btn">Finish Recipe</button>
+          <button
+            data-testid="finish-recipe-btn"
+            disabled={ !activeFinishRecipeButton() }
+            style={ { position: 'fixed', bottom: '0' } }
+          >
+            Finish Recipe
+          </button>
         </div>
       ))}
     </div>
