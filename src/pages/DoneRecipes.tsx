@@ -65,18 +65,28 @@ export default function DoneRecipes() {
               alt={ recipe.name }
               data-testid={ `${index}-horizontal-image` }
             />
-            <p data-testid={ `${index}-horizontal-top-text` }>
-              {recipe.nationality
-                ? `${recipe.nationality} - ${recipe.category}` : recipe.category}
-            </p>
+
+            {recipe.type === 'drink' ? (
+              <p data-testid={ `${index}-horizontal-top-text` }>
+                {recipe.alcoholicOrNot}
+              </p>
+            ) : (
+              <p data-testid={ `${index}-horizontal-top-text` }>
+                {recipe.nationality
+                  ? `${recipe.nationality} - ${recipe.category}` : recipe.category}
+              </p>
+            )}
+
             <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
             <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
+
             {recipe.tags
               && recipe.tags.slice(0, 2).map((tag: string, tagIndex: number) => (
                 <span key={ tagIndex } data-testid={ `${index}-${tag}-horizontal-tag` }>
                   {tag}
                 </span>
               ))}
+
             <input
               type="image"
               src={ share }
