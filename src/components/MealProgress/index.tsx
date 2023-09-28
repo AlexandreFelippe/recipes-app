@@ -138,7 +138,7 @@ export default function MealProgress() {
       alcoholicOrNot: '',
       name: currentMeal.strMeal,
       image: currentMeal.strMealThumb,
-      doneDate: new Date().toISOString().slice(0, 10),
+      doneDate: new Date().toISOString(),
       tags: currentMeal.strTags ? currentMeal.strTags.split(',') : [],
     };
 
