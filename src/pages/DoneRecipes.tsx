@@ -4,7 +4,7 @@ import share from '../images/shareIcon.svg';
 
 export default function DoneRecipes() {
   const [recipes, setRecipes] = useState<any>([]);
-  const [filteredRecipes, setFilteredRecipes] = useState<any>([]);
+  const [filteredRecipes, setFilteredRecipes] = useState([]);
 
   useEffect(() => {
     const getStorage = () => {
@@ -23,6 +23,15 @@ export default function DoneRecipes() {
     }
   };
 
+  const handleShareClick = (recipeId: string) => {
+    const urlToCopy = `${window.location.origin}/recipes/${recipeId}`;
+    navigator.clipboard.writeText(urlToCopy)
+      .then(() => {
+        alert('Link copied!');
+      })
+      .catch((error) => console.error('Erro ao copiar link:', error));
+  };
+
   return (
     <>
       <Header title="Done Recipes" search={ false } profile />
@@ -33,21 +42,18 @@ export default function DoneRecipes() {
           onClick={ () => handleFilter('All') }
         >
           All
-
         </button>
         <button
           data-testid="filter-by-meal-btn"
           onClick={ () => handleFilter('Meals') }
         >
           Meals
-
         </button>
         <button
           data-testid="filter-by-drink-btn"
           onClick={ () => handleFilter('Drinks') }
         >
           Drinks
-
         </button>
       </div>
       <br />
@@ -59,18 +65,25 @@ export default function DoneRecipes() {
               alt={ recipe.name }
               data-testid={ `${index}-horizontal-image` }
             />
-            <p data-testid={ `${index}-horizontal-top-text` }>{recipe.category}</p>
+            <p data-testid={ `${index}-horizontal-top-text` }>
+              {recipe.nationality
+                ? `${recipe.nationality} - ${recipe.category}` : recipe.category}
+            </p>
             <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
             <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
-            {recipe.tags && recipe.tags.length > 0
-              && recipe.tags.map((tag: string, tagIndex: number) => (
+            {recipe.tags
+              && recipe.tags.slice(0, 2).map((tag: string, tagIndex: number) => (
                 <span key={ tagIndex } data-testid={ `${index}-${tag}-horizontal-tag` }>
                   {tag}
                 </span>
               ))}
-            <button data-testid={ `${index}-horizontal-share-btn` }>
-              <img src={ share } alt="share" />
-            </button>
+            <input
+              type="image"
+              src={ share }
+              alt="share"
+              data-testid={ `${index}-horizontal-share-btn` }
+              onClick={ () => handleShareClick(recipe.id) }
+            />
             <br />
           </div>
         ))}
