@@ -17,11 +17,19 @@ export default function DoneRecipes() {
   }, []);
 
   const handleFilter = (filter: string) => {
-    console.log('Filter button clicked:', filter);
-    if (filter === 'All') setFilteredRecipes(recipes);
-    else {
-      setFilteredRecipes(recipes
-        .filter((recipe: any) => recipe.type === filter.toLowerCase()));
+    switch (filter) {
+      case 'All':
+        setFilteredRecipes(recipes);
+        break;
+      case 'Meals':
+        setFilteredRecipes(recipes.filter((recipe: any) => recipe.type === 'meal'));
+        break;
+      case 'Drinks':
+        setFilteredRecipes(recipes.filter((recipe: any) => recipe.type === 'drink'));
+        break;
+      default:
+        console.error('Ainda vou pôr');
+        break;
     }
   };
 
