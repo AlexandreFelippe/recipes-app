@@ -12,6 +12,14 @@ export default function DrinkProgress() {
 
   useEffect(() => {
     if (!id) return;
+
+    const savedProgress = JSON.parse(localStorage.getItem('inProgressRecipes') || '{}');
+    const mealProgress = savedProgress.meals?.[id];
+    if (mealProgress) {
+      setCheckedIngredients((prevState) => mealProgress
+        .map((item: any, index: any) => item || prevState[index]));
+    }
+
     const fechtsApi = async () => {
       try {
         const dataDrinks = await fetchDrinksRecipesDetails(id);
@@ -42,6 +50,18 @@ export default function DrinkProgress() {
     const newChecked = [...checkedIngredients];
     newChecked[index] = !newChecked[index];
     setCheckedIngredients(newChecked);
+
+    const currentProgress = JSON.parse(localStorage.getItem('inProgressRecipes') || '{}');
+    if (!currentProgress.meals) {
+      currentProgress.meals = {};
+    }
+
+    if (id) {
+      currentProgress.meals[id] = newChecked;
+    }
+
+    currentProgress.meals[id!] = newChecked;
+    localStorage.setItem('inProgressRecipes', JSON.stringify(currentProgress));
   };
 
   return (
@@ -66,7 +86,11 @@ export default function DrinkProgress() {
                   style={ { textDecoration: checkedIngredients[index]
                     ? 'line-through solid rgb(0, 0, 0)' : 'none' } }
                 >
-                  <input type="checkbox" onChange={ () => toggleIngredient(index) } />
+                  <input
+                    type="checkbox"
+                    checked={ checkedIngredients[index] }
+                    onChange={ () => toggleIngredient(index) }
+                  />
                   {ingredient}
                 </label>
               </div>
