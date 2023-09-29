@@ -8,7 +8,7 @@ export default function Profile() {
     const user: string | null = localStorage.getItem('user');
     if (user) {
       const userObj = JSON.parse(user);
-      return userObj?.email || 'Email não encontrado';
+      return userObj.email;
     }
     return 'Email não encontrado';
   };
