@@ -2,8 +2,8 @@ import { screen, waitFor } from '@testing-library/react';
 import renderWithRouterAndRedux from '../utils/renderWithRouterAndRedux';
 import App from '../App';
 
-describe.only('testes do Meals', () => {
-  test.only('Testa os filtros do componente:', async () => {
+describe('testes do Meals', () => {
+  test('Testa os filtros do componente:', async () => {
     const route = '/meals';
     renderWithRouterAndRedux(<App />, route);
     await waitFor(async () => {

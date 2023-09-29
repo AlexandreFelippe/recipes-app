@@ -42,7 +42,6 @@ describe('testes da página RecipeInProgress', () => {
       await screen.findByRole('checkbox', { name: /1 pound penne rigate/i });
     }, { timeout: 5000 });
     await user.click(screen.getByRole('checkbox', { name: /1 pound penne rigate/i }));
-    screen.debug();
     expect(screen.getByRole('checkbox', { name: /1 pound penne rigate/i })).toBeChecked();
   });
   test('Testa o botão finish recipe', async () => {
