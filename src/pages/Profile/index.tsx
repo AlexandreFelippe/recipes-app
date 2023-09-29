@@ -26,7 +26,13 @@ export default function Profile() {
           Done Recipes
 
         </button>
-        <button data-testid="profile-favorite-btn">Favorite Recipes</button>
+        <button
+          onClick={ () => navigate('/favorite-recipes') }
+          data-testid="profile-favorite-btn"
+        >
+          Favorite Recipes
+
+        </button>
         <button data-testid="profile-logout-btn">Logout</button>
       </div>
     </>
