@@ -29,5 +29,6 @@ describe.only('Testa os filtros de Bebida do Header:', () => {
     screen.findByRole('img', { name: /mile long island iced tea/i });
     await user.click(DrinkButton);
     screen.findByRole('img', { name: /gg/i });
+    screen.debug();
   });
 });
