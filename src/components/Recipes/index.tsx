@@ -58,10 +58,10 @@ export default function Recipes() {
     <>
       { checkDrinks() && <DrinksCard /> }
       { checkMeals() && <MealsCard /> }
-      { drinks.length > 0 && <DrinksSearchCard />}
-      { meals.length > 0 && <MealsSearchCard />}
-      { filterCategoryMeals.meals.length && <MealsCategoryCard />}
-      { filterCategoryDrinks.drinks.length && <DrinksCategoryCard />}
+      { drinks && <DrinksSearchCard />}
+      { meals && <MealsSearchCard />}
+      { filterCategoryMeals.meals && <MealsCategoryCard />}
+      { filterCategoryDrinks.drinks && <DrinksCategoryCard />}
     </>
   );
 }

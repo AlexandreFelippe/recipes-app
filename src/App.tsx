@@ -7,7 +7,7 @@ import Drinks from './pages/Drinks/index';
 import Profile from './pages/Profile/index';
 import FavoriteRecipes from './pages/FavoriteRecipes/index';
 import Footer from './components/Footer/index';
-import RecipesDetails from './pages/RecipesDetails/index';
+import RecipeDetails from './pages/RecipeDetails/index';
 import RecipeInProgress from './pages/RecipeInProgress/index';
 
 function App() {
@@ -17,8 +17,8 @@ function App() {
         <Route path="/" element={ <Login /> } />
         <Route path="/meals" element={ <Meals /> } />
         <Route path="/drinks" element={ <Drinks /> } />
-        <Route path="/meals/:id" element={ <RecipesDetails /> } />
-        <Route path="/drinks/:id" element={ <RecipesDetails /> } />
+        <Route path="/meals/:id" element={ <RecipeDetails /> } />
+        <Route path="/drinks/:id" element={ <RecipeDetails /> } />
         <Route path="/meals/:id/in-progress" element={ <RecipeInProgress /> } />
         <Route path="/drinks/:id/in-progress" element={ <RecipeInProgress /> } />
         <Route path="/profile" element={ <Profile /> } />
