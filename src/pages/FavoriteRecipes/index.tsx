@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import share from '../../images/shareIcon.svg';
 import blackHeart from '../../images/blackHeartIcon.svg';
-import whiteHeart from '../../images/whiteHeartIcon.svg';
+// import whiteHeart from '../../images/whiteHeartIcon.svg';
 
 export default function FavoriteRecipes() {
   const [favorite, setFavorite] = useState<any>([]);
@@ -36,13 +36,40 @@ export default function FavoriteRecipes() {
     localStorage.setItem('favoriteRecipes', JSON.stringify(updatedFavorites));
   };
 
+  const handleFilter = (filter: string) => {
+    let filteredData = [];
+    if (filter === 'All') {
+      filteredData = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
+    } else if (filter === 'Meals') {
+      filteredData = favorite.filter((recipe: any) => recipe.type === 'meal');
+    } else if (filter === 'Drinks') {
+      filteredData = favorite.filter((recipe: any) => recipe.type === 'drink');
+    }
+    setFavorite(filteredData);
+  };
+
   return (
     <>
       <Header title="Favorite Recipes" search={ false } profile />
       <div>
-        <button data-testid="filter-by-all-btn">All</button>
-        <button data-testid="filter-by-meal-btn">Meals</button>
-        <button data-testid="filter-by-drink-btn">Drinks</button>
+        <button
+          data-testid="filter-by-all-btn"
+          onClick={ () => handleFilter('All') }
+        >
+          All
+        </button>
+        <button
+          data-testid="filter-by-meal-btn"
+          onClick={ () => handleFilter('Meals') }
+        >
+          Meals
+        </button>
+        <button
+          data-testid="filter-by-drink-btn"
+          onClick={ () => handleFilter('Drinks') }
+        >
+          Drinks
+        </button>
       </div>
       <div>
         {Array.isArray(favorite) && favorite.map((recipe, index) => (
