@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
 import share from '../../images/shareIcon.svg';
 import blackHeart from '../../images/blackHeartIcon.svg';
@@ -28,11 +29,8 @@ export default function FavoriteRecipes() {
 
   const handleDesfavorite = (indexToRemove: number) => {
     const updatedFavorites = [...favorite];
-
     updatedFavorites.splice(indexToRemove, 1);
-
     setFavorite(updatedFavorites);
-
     localStorage.setItem('favoriteRecipes', JSON.stringify(updatedFavorites));
   };
 
@@ -74,12 +72,17 @@ export default function FavoriteRecipes() {
       <div>
         {Array.isArray(favorite) && favorite.map((recipe, index) => (
           <div key={ index }>
-            <img
-              data-testid={ `${index}-horizontal-image` }
-              src={ recipe.image }
-              alt={ recipe.name }
-              style={ { width: '200px', height: 'auto' } }
-            />
+            <Link
+              to={ recipe.type === 'drink'
+                ? `/drinks/${recipe.id}` : `/meals/${recipe.id}` }
+            >
+              <img
+                src={ recipe.image }
+                alt={ recipe.name }
+                data-testid={ `${index}-horizontal-image` }
+                style={ { width: '200px', height: 'auto' } }
+              />
+            </Link>
             {recipe.type === 'drink' ? (
               <p data-testid={ `${index}-horizontal-top-text` }>
                 {recipe.alcoholicOrNot}
@@ -90,7 +93,12 @@ export default function FavoriteRecipes() {
                   ? `${recipe.nationality} - ${recipe.category}` : recipe.category}
               </p>
             )}
-            <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
+            <Link
+              to={ recipe.type === 'drink'
+                ? `/drinks/${recipe.id}` : `/meals/${recipe.id}` }
+            >
+              <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
+            </Link>
             <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
 
             {recipe.tags
