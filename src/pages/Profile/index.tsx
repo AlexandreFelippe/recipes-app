@@ -13,6 +13,11 @@ export default function Profile() {
     return 'Email não encontrado';
   };
 
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/');
+  };
+
   return (
     <>
       <Header title="Profile" search={ false } profile />
@@ -33,7 +38,13 @@ export default function Profile() {
           Favorite Recipes
 
         </button>
-        <button data-testid="profile-logout-btn">Logout</button>
+        <button
+          onClick={ handleLogout }
+          data-testid="profile-logout-btn"
+        >
+          Logout
+
+        </button>
       </div>
     </>
   );
