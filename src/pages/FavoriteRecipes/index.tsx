@@ -26,6 +26,16 @@ export default function FavoriteRecipes() {
       .catch((error) => console.error('Erro ao copiar link:', error));
   };
 
+  const handleDesfavorite = (indexToRemove: number) => {
+    const updatedFavorites = [...favorite];
+
+    updatedFavorites.splice(indexToRemove, 1);
+
+    setFavorite(updatedFavorites);
+
+    localStorage.setItem('favoriteRecipes', JSON.stringify(updatedFavorites));
+  };
+
   return (
     <>
       <Header title="Favorite Recipes" search={ false } profile />
@@ -75,6 +85,7 @@ export default function FavoriteRecipes() {
               src={ blackHeart }
               alt="Favorite"
               data-testid={ `${index}-horizontal-favorite-btn` }
+              onClick={ () => handleDesfavorite(index) }
             />
             { copied && <span>Link copied!</span> }
             <br />
