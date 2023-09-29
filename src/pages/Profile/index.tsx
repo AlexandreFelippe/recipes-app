@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 
 export default function Profile() {
+  const navigate = useNavigate();
+
   const getEmail = () => {
     const user: string | null = localStorage.getItem('user');
     if (user) {
@@ -16,7 +19,13 @@ export default function Profile() {
       <div>Profile</div>
       <h3 data-testid="profile-email">{getEmail()}</h3>
       <div>
-        <button data-testid="profile-done-btn">Done Recipes</button>
+        <button
+          data-testid="profile-done-btn"
+          onClick={ () => navigate('/done-recipes') }
+        >
+          Done Recipes
+
+        </button>
         <button data-testid="profile-favorite-btn">Favorite Recipes</button>
         <button data-testid="profile-logout-btn">Logout</button>
       </div>
