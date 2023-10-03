@@ -9,6 +9,7 @@ import { mealsSearch, drinksSearch } from '../../redux/actions';
 import { fetchFirstLetter, fetchIngredients, fetchName, fetchFirstLetterDrinks,
   fetchIngredientsDrinks, fetchNameDrinks } from '../../utils/SearchApi';
 import CategoryFilter from '../CategoryFilter/Index';
+import styles from './Header.module.css';
 
 const initial = {
   searchText: '',
@@ -115,25 +116,28 @@ export default function Header({ title, search, profile }: HeaderProps) {
 
   return (
     <header>
-      <h1 data-testid="page-title">{title}</h1>
-      {search && (
-        <button
-          onClick={ toggleSearchVisibility }
-        >
-          <img
-            src={ searchIcon }
-            alt="pesquisar"
-            data-testid="search-top-btn"
-          />
-        </button>
-      )}
-      {profile && (
-        <button
-          onClick={ () => navigate('/profile') }
-        >
-          <img src={ profileIcon } alt="perfil" data-testid="profile-top-btn" />
-        </button>
-      )}
+      <h1 className={ styles.h1 } data-testid="page-title">{title}</h1>
+      <div className={ styles.button }>
+        {search && (
+
+          <button
+            onClick={ toggleSearchVisibility }
+          >
+            <img
+              src={ searchIcon }
+              alt="pesquisar"
+              data-testid="search-top-btn"
+            />
+          </button>
+        )}
+        {profile && (
+          <button
+            onClick={ () => navigate('/profile') }
+          >
+            <img src={ profileIcon } alt="perfil" data-testid="profile-top-btn" />
+          </button>
+        )}
+      </div>
       {isSearchVisible && (
         <>
           <input
