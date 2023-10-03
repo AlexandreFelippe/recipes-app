@@ -1,0 +1,29 @@
+.cow {
+  flex-shrink: 0;
+  height: 28.432px;
+  width: 30.347px;
+}
+
+.goat {
+  flex-shrink: 0;
+  height: 30px;
+  width: 30px;
+}
+
+.chicken {
+  flex-shrink: 0;
+  height: 28.099px;
+  width: 18.556px;
+}
+
+.breakfast {
+  flex-shrink: 0;
+  height: 21.645px;
+  width: 21.645px;
+}
+
+.shortCake {
+  flex-shrink: 0;
+  height: 22.399px;
+  width: 27.168px;
+}
