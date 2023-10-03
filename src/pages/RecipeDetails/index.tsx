@@ -5,7 +5,7 @@ import MealDetails from '../../components/MealDetails';
 import StartRecipeBtn from '../../components/StartRecipeBtn';
 import ContinueRecipeBtn from '../../components/ContinueRecipeBtn';
 
-function RecipesDetails() {
+function RecipeDetails() {
   const [isDone, setIsDone] = useState(false);
   const [isInProgress, setIsInProgress] = useState(false);
   const { id: rawId } = useParams();
@@ -55,4 +55,4 @@ function RecipesDetails() {
   );
 }
 
-export default RecipesDetails;
+export default RecipeDetails;

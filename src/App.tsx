@@ -6,7 +6,8 @@ import Meals from './pages/Meals/index';
 import Drinks from './pages/Drinks/index';
 import Profile from './pages/Profile/index';
 import FavoriteRecipes from './pages/FavoriteRecipes/index';
-import RecipesDetails from './pages/RecipesDetails/index';
+import Footer from './components/Footer/index';
+import RecipeDetails from './pages/RecipeDetails/index';
 import RecipeInProgress from './pages/RecipeInProgress/index';
 
 function App() {
