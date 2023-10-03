@@ -1,8 +1,15 @@
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .meals img {
   background: white;
   border-radius: 5px 5px 0 0;
   display: flex;
   flex-basis: calc(50% - 20px);
+  flex-wrap: wrap;
   height: 166.118px;
   margin-top: 10px;
   width: 163.346px;

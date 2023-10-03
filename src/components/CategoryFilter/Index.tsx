@@ -5,6 +5,12 @@ import { mealsCategorySearch,
   drinksCategorySearch, removeCategory } from '../../redux/actions';
 import { fetchMealsCategory, fetchDrinksCategory,
   fetchDrinksFiltered, fetchMealsFiltered } from '../../utils/SearchApi';
+import prato from '../../images/icone-prato.svg';
+import shortcake from '../../images/🦆 emoji _shortcake_.svg';
+import chicken from '../../images/🦆 emoji _chicken_.svg';
+import cowFace from '../../images/🦆 emoji _cow face_.svg';
+import goat from '../../images/goat-svgrepo-com 1.svg';
+import breakfest from '../../images/Group 7.svg';
 
 export default function CategoryFilter() {
   const [mealsCategory, setMealsCategory] = useState<any>([]);
