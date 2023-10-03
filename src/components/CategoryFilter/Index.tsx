@@ -6,11 +6,8 @@ import { mealsCategorySearch,
 import { fetchMealsCategory, fetchDrinksCategory,
   fetchDrinksFiltered, fetchMealsFiltered } from '../../utils/SearchApi';
 import prato from '../../images/icone-prato.svg';
-import shortcake from '../../images/🦆 emoji _shortcake_.svg';
-import chicken from '../../images/🦆 emoji _chicken_.svg';
-import cowFace from '../../images/🦆 emoji _cow face_.svg';
-import goat from '../../images/goat-svgrepo-com 1.svg';
-import breakfest from '../../images/Group 7.svg';
+import imagestocategory from './imagestocategory';
+import style from './CategoryFilter.module.css';
 
 export default function CategoryFilter() {
   const [mealsCategory, setMealsCategory] = useState<any>([]);
@@ -64,24 +61,27 @@ export default function CategoryFilter() {
   };
 
   return (
-    <div>
+    <div className={ style.container }>
       {pathname === '/meals' && (
         <>
           {mealsSlice.map((meal: any, index: string) => (
             <button
+              className={ style.categoryButton }
               key={ index }
               data-testid={ `${meal.strCategory}-category-filter` }
               onClick={ handleClickFilterMeals }
             >
+              {imagestocategory(meal.strCategory)}
               {meal.strCategory}
             </button>
           ))}
           <button
+            className={ style.categoryButton }
             data-testid="All-category-filter"
             onClick={ handleResetCategory }
           >
+            <img src={ prato } alt="All foods" />
             All
-
           </button>
         </>
       )}

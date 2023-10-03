@@ -1,14 +1,17 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import searchIcon from '../../images/searchIcon.svg';
-import profileIcon from '../../images/profileIcon.svg';
+import profileIcon from '../../images/icone-perfil.svg';
+import searchIcon from '../../images/icone pesquisar.png';
 import SearchBar from '../SearchBar';
 import { HeaderProps, FormType } from '../../types';
 import { mealsSearch, drinksSearch } from '../../redux/actions';
 import { fetchFirstLetter, fetchIngredients, fetchName, fetchFirstLetterDrinks,
   fetchIngredientsDrinks, fetchNameDrinks } from '../../utils/SearchApi';
 import CategoryFilter from '../CategoryFilter/Index';
+import styles from './Header.module.css';
+import iconeprato from '../../images/icone-prato.svg';
+import iconeRecipes from '../../images/ícone Recipes app.svg';
 
 const initial = {
   searchText: '',
@@ -115,25 +118,31 @@ export default function Header({ title, search, profile }: HeaderProps) {
 
   return (
     <header>
-      <h1 data-testid="page-title">{title}</h1>
-      {search && (
-        <button
-          onClick={ toggleSearchVisibility }
-        >
-          <img
-            src={ searchIcon }
-            alt="pesquisar"
-            data-testid="search-top-btn"
-          />
-        </button>
-      )}
-      {profile && (
-        <button
-          onClick={ () => navigate('/profile') }
-        >
-          <img src={ profileIcon } alt="perfil" data-testid="profile-top-btn" />
-        </button>
-      )}
+      <div className={ styles.button }>
+        <img src={ iconeRecipes } alt="recipe icon" />
+        {search && (
+          <button
+            onClick={ toggleSearchVisibility }
+          >
+            <img
+              src={ searchIcon }
+              alt="pesquisar"
+              data-testid="search-top-btn"
+            />
+          </button>
+        )}
+        {profile && (
+          <button
+            onClick={ () => navigate('/profile') }
+          >
+            <img src={ profileIcon } alt="perfil" data-testid="profile-top-btn" />
+          </button>
+        )}
+      </div>
+      <div>
+        <img className={ styles.icone } src={ iconeprato } alt="logo" />
+        <h1 className={ styles.h1 } data-testid="page-title">{title}</h1>
+      </div>
       {isSearchVisible && (
         <>
           <input

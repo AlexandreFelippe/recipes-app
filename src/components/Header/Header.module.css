@@ -1,0 +1,24 @@
+h1 {
+  color: #41197f;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 2.1px;
+  line-height: normal;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.icone {
+  height: 29.532px;
+  justify-content: center;
+  margin-left: 155px;
+  margin-top: 10px;
+  width: 40.334px;
+}
+
+.button {
+  display: flex;
+  justify-content: right;
+}
