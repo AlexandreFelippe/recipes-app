@@ -1,27 +1,33 @@
-body {
-  margin-bottom: 500px;
-  overflow-x: hidden; /* Impede a rolagem horizontal */
-  padding: 0;
-}
-
 .container {
-  align-items: center;
-  background: #94adab;
+  align-items: start;
   display: flex;
   flex-direction: column;
-  max-width: 100%;
-  width: 100%; /* Ocupa 100% da largura da tela */
+  height: 740px;
+  margin: 0;
+  padding: 0;
+  width: 360px;
+}
+
+
+.header {
+  background-image: url('../../images/Background.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50vh;
+  margin: 0;
+  width: 100%;
 }
 
 .logo {
   align-items: center;
   display: flex;
   flex-shrink: 0;
-  height: 30vh;
+  height: 157.25px;
   justify-content: center;
-  margin-left: 8vh;
-  max-height: 150%;
-  width: 30vw;
+  margin-bottom: 4.58px;
+  margin-left: 81px;
+  margin-top: 79.17px;
+  width: 198px;
 }
 
 .tomato {
@@ -29,9 +35,65 @@ body {
   background-size: contain;
   display: flex;
   flex-shrink: 0;
-  height: auto;
+  height: 279px;
   justify-content: center;
-  max-height: 60vh;
-  max-width: 70vw;
-  width: auto;
+  width: 360px;
+  z-index: 1;
+}
+
+.form {
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.form input {
+  border: 0.5px solid #41197f;
+  border-radius: 5px;
+  color: #41197f;
+  font-family: Epilogue , sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  height: 40px;
+  line-height: normal;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  width: 276px;
+}
+
+.form input::placeholder {
+  color: #41197f;
+  font-family: Epilogue , sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.h1 {
+  color: #41197f;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 3.3px;
+  line-height: normal;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.form button {
+  background: #fcc436;
+  border-radius: 5px;
+  color: white;
+  font-family: Epilogue , sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  height: 40px;
+  letter-spacing: 0.42px;
+  line-height: normal;
+  text-align: center;
+  text-transform: uppercase;
+  width: 300px;
 }

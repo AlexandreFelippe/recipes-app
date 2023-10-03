@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReduxState } from '../../types';
+import styles from './mealsCard.module.css';
 
 export default function MealsCard() {
   const { meals } = useSelector((state: ReduxState) => state.meals);
@@ -9,16 +10,26 @@ export default function MealsCard() {
     <>
       {mealsData.map((meal, index) => (
         <Link
+          className={ styles.box }
           key={ index }
           to={ `/meals/${meal.idMeal}` }
         >
-          <div key={ meal.strMeal } data-testid={ `${index}-recipe-card` }>
-            <h3 data-testid={ `${index}-card-name` }>{ meal.strMeal }</h3>
+          <div
+            className={ styles.meals }
+            key={ meal.strMeal }
+            data-testid={ `${index}-recipe-card` }
+          >
             <img
               data-testid={ `${index}-card-img` }
               src={ meal.strMealThumb }
               alt={ meal.strMeal }
             />
+            <h3
+              className={ styles.h3 }
+              data-testid={ `${index}-card-name` }
+            >
+              { meal.strMeal }
+            </h3>
           </div>
         </Link>
       ))}

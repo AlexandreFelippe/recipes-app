@@ -38,29 +38,32 @@ function Login() {
   }
 
   return (
-    <body className={ styles.container }>
+    <div className={ styles.container }>
       <header className={ styles.header }>
         <img className={ styles.logo } src={ logoRecipes } alt="logo recipes" />
         <img className={ styles.tomato } src={ tomate } alt="tomate" />
-        <h2>Login</h2>
       </header>
-      <form onSubmit={ handleSubmit }>
+      <form
+        className={ styles.form }
+        onSubmit={ handleSubmit }
+      >
+        <h1 className={ styles.h1 }>Login</h1>
         <div>
-          <p>email:</p>
           <input
             type="email"
             value={ email }
             data-testid="email-input"
             onChange={ handleEmailChange }
+            placeholder="Email"
           />
         </div>
         <div>
-          <p>senha:</p>
           <input
             data-testid="password-input"
             type="password"
             value={ password }
             onChange={ handlePasswordChange }
+            placeholder="Password"
           />
         </div>
         <button
@@ -69,10 +72,10 @@ function Login() {
           disabled={ !isValid }
           data-testid="login-submit-btn"
         >
-          Entrar
+          Enter
         </button>
       </form>
-    </body>
+    </div>
   );
 }
 

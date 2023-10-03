@@ -1,0 +1,19 @@
+.meals img {
+  background: white;
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  flex-basis: calc(50% - 20px);
+  height: 166.118px;
+  margin-top: 10px;
+  width: 163.346px;
+}
+
+h3 {
+  color: #1a1b1c;
+  font-family: Epilogue , sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 142.803px;
+}
