@@ -1,10 +1,10 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchMealsRecipesDetails } from '../../utils/SearchApi';
-import share from '../../images/shareIcon.svg';
-import blackHeart from '../../images/blackHeartIcon.svg';
+import shareIcon from '../../images/Share.svg';
+import like from '../../images/like.svg';
 import whiteHeart from '../../images/whiteHeartIcon.svg';
-import './style.css';
+import styles from './style.module.css';
 
 export default function MealProgress() {
   const [meals, setMeals] = useState<any>();
@@ -151,45 +151,84 @@ export default function MealProgress() {
     <div>
       { Array.isArray(meals) && meals.map((meal: any, mealIndex: any) => (
         <div key={ mealIndex }>
-          <button data-testid="share-btn" onClick={ handleShareClick }>
-            <img src={ share } alt="share" />
-          </button>
-          <input
-            type="image"
-            src={ favorite ? blackHeart : whiteHeart }
-            alt="Favorite"
-            data-testid="favorite-btn"
-            onClick={ saveFavorite }
-          />
+          <div>
+            <button
+              data-testid="share-btn"
+              onClick={ handleShareClick }
+              className={ styles.shareButton }
+            >
+              <img src={ shareIcon } alt="share" />
+            </button>
+            <button
+              className={ styles.favoriteButton }
+            >
+              <input
+                type="image"
+                src={ favorite ? like : whiteHeart }
+                alt="Favorite"
+                data-testid="favorite-btn"
+                onClick={ saveFavorite }
+              />
+            </button>
+          </div>
           { copied && <span>Link copied!</span> }
-          <h1 data-testid="recipe-title">{meal.strMeal}</h1>
-          <h2 data-testid="recipe-category">{meal.strCategory}</h2>
+          <h3
+            className={ styles.h3 }
+            data-testid="recipe-title"
+          >
+            {meal.strMeal}
+          </h3>
           <img
+            className={ styles.image }
             src={ meal.strMealThumb }
             alt={ meal.strMeal }
             data-testid="recipe-photo"
           />
-
-          {getIngredients().map((ingredient, index) => (
-            <div key={ index }>
-              <label
-                data-testid={ `${index}-ingredient-step` }
-                style={ { textDecoration: checkedIngredients[index]
-                  ? 'line-through solid rgb(0, 0, 0)' : 'none' } }
-              >
-                <input
-                  type="checkbox"
-                  checked={ checkedIngredients[index] }
-                  onChange={ () => toggleIngredient(index) }
-                />
-                {ingredient}
-              </label>
-            </div>
-          ))}
-
-          <p data-testid="instructions">{meal.strInstructions}</p>
+          <p
+            className={ styles.category }
+            data-testid="recipe-category"
+          >
+            {meal.strCategory}
+          </p>
+          <h4
+            className={ styles.h4 }
+          >
+            Ingredients
+          </h4>
+          <ul
+            className={ styles.labelISngredient }
+          >
+            {getIngredients().map((ingredient, index) => (
+              <div key={ index }>
+                <label
+                  data-testid={ `${index}-ingredient-step` }
+                  style={ { textDecoration: checkedIngredients[index]
+                    ? 'line-through solid rgb(0, 0, 0)' : 'none' } }
+                >
+                  <input
+                    className={ styles.checkbox }
+                    type="checkbox"
+                    checked={ checkedIngredients[index] }
+                    onChange={ () => toggleIngredient(index) }
+                  />
+                  {ingredient}
+                </label>
+              </div>
+            ))}
+          </ul>
+          <h4
+            className={ styles.h4 }
+          >
+            Instructions
+          </h4>
+          <p
+            className={ styles.instructions }
+            data-testid="instructions"
+          >
+            {meal.strInstructions}
+          </p>
           <button
-            className="start-recipes-btn"
+            className={ styles.finishRecipesBtn }
             data-testid="finish-recipe-btn"
             disabled={ !activeFinishRecipeButton() }
             style={ { position: 'fixed', bottom: '0' } }

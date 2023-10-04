@@ -1,0 +1,79 @@
+.profileIcon {
+  display: block;
+  height: 100px;
+  margin: 20px auto;
+  width: 100px;
+}
+
+.email {
+  background-color: white;
+  border-radius: 5px;
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+}
+
+.divDone {
+  text-align: center;
+}
+
+.DoneImg {
+  height: 40px;
+  width: 40px;
+}
+
+.Donebuttons {
+  background-color: yellow;
+  border: none;
+  color: purple;
+  cursor: pointer;
+  margin-top: 10px;
+  padding: 10px 20px;
+}
+
+.divFavorite {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.favoriteButtons {
+  background-color: yellow;
+  border: none;
+  color: purple;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.favoriteImg {
+  height: 20px;
+  margin-left: 5px;
+  vertical-align: middle;
+  width: 20px;
+}
+
+.divLogout {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.logoutButtons {
+  background-color: yellow;
+  border: none;
+  color: purple;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.logoutImg {
+  height: 20px;
+  margin-left: 5px;
+  vertical-align: middle;
+  width: 20px;
+}
