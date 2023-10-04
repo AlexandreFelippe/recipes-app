@@ -6,6 +6,7 @@ h1 {
   font-weight: 900;
   letter-spacing: 2.1px;
   line-height: normal;
+  margin-bottom: 20px;
   text-align: center;
   text-transform: uppercase;
 }
@@ -14,7 +15,7 @@ h1 {
   height: 29.532px;
   justify-content: center;
   margin-left: 155px;
-  margin-top: 10px;
+  margin-top: 30px;
   width: 40.334px;
 }
 
@@ -23,7 +24,7 @@ h1 {
   align-items: center;
   background-color: #fcdc36;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .logo {
@@ -38,4 +39,24 @@ h1 {
 .button {
   background-color: transparent;
   border: none;
+}
+
+.tampa {
+  padding: 10px;
+}
+
+.input {
+  background: white;
+  border: 1px solid #b1b1b1;
+  border-radius: 10px 10px 0 0;
+  color: #797d86;
+  flex-shrink: 0;
+  font-family: Epilogue , sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  height: 40px;
+  line-height: normal;
+  right: 10px;
+  width: 338px;
 }

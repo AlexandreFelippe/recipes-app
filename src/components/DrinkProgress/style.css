@@ -1,4 +1,4 @@
-.start-recipes-btn {
+.finish-recipes-btn {
   background: #fcc436;
   border: none;
   border-radius: 5px;
@@ -18,4 +18,100 @@
   text-transform: uppercase;
   transform: translate(-50%, -50%);
   width: 336px;
+}
+
+.image {
+  flex-shrink: 0;
+  height: 162px;
+  width: 360px;
+}
+
+.allButtons {
+  align-content: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin-top: 10px;
+  position: absolute;
+}
+
+.shareButton {
+  background: transparent;
+  border: none;
+  text-align: right;
+}
+
+.favotiteButton {
+  background: transparent;
+  border: none;
+
+}
+
+.h3 {
+  align-items: center;
+  color: white;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 2.1px;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.label-ingredient {
+  background: white;
+  border: 0.554px solid #b1b1b1;
+  border-radius: 5.351px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  height: auto;
+  margin-left: 10px;
+  text-align: left;
+  width: 300px;
+}
+
+.h4 {
+  color: #1a1b1c;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 10px;
+  width: 142.803px;
+}
+
+.checkbox {
+  border: 2px solid #fcc436;
+  border-radius: 3px;
+  color: #1a1b1c;
+  flex-shrink: 0;
+  font-family: Epilogue , sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  height: 17px;
+  line-height: normal;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 5px;
+  width: 17px;
+}
+
+.instructions {
+  border: 0.554px solid #b1b1b1;
+  border-radius: 5.351px;
+  color: #1a1b1c;
+  font-family: Epilogue , sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 113%; /* 15.82px */
+  margin-left: 10px;
+  padding: 19px;
+  width: 300px;
 }

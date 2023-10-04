@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
 import share from '../../images/shareIcon.svg';
+import all from '../../images/🦆 icon _fast food outline_.svg';
+import meals from '../../images/icone-prato.svg';
+import drinks from '../../images/icone-bebida.svg';
+import styles from './Donerecipies.module.css';
 
 export default function DoneRecipes() {
   const [recipes, setRecipes] = useState<any>([]);
@@ -48,23 +52,29 @@ export default function DoneRecipes() {
     <>
       <Header title="Done Recipes" search={ false } profile />
       <br />
-      <div>
+      <div className={ styles.buttonBox }>
         <button
+          className={ styles.filterButtons }
           data-testid="filter-by-all-btn"
           onClick={ () => handleFilter('All') }
         >
+          <img className={ styles.allImage } src={ all } alt="all categories" />
           All
         </button>
         <button
+          className={ styles.filterButtons }
           data-testid="filter-by-meal-btn"
           onClick={ () => handleFilter('Meals') }
         >
+          <img className={ styles.mealsImage } src={ meals } alt="meals categories" />
           Meals
         </button>
         <button
+          className={ styles.filterButtons }
           data-testid="filter-by-drink-btn"
           onClick={ () => handleFilter('Drinks') }
         >
+          <img className={ styles.drinksImage } src={ drinks } alt="drinks categories" />
           Drinks
         </button>
       </div>
