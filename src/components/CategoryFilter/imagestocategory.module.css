@@ -27,3 +27,39 @@
   height: 22.399px;
   width: 27.168px;
 }
+
+.all {
+  border: 1.811px solid #fcc436;
+  border-radius: 45.28px;
+  padding: 5px;
+}
+
+.ordinaryDrink {
+  flex-shrink: 0;
+  height: 25.121px;
+  width: 14.355px;
+}
+
+.cocktail {
+  flex-shrink: 0;
+  height: 27.139px;
+  width: 20.355px;
+}
+
+.shake {
+  flex-shrink: 0;
+  height: 26.507px;
+  width: 18.555px;
+}
+
+.other {
+  flex-shrink: 0;
+  height: 21.913px;
+  width: 21px;
+}
+
+.cocoa {
+  flex-shrink: 0;
+  height: 45.28px;
+  width: 45.28px;
+}

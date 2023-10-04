@@ -11,7 +11,9 @@ import { fetchFirstLetter, fetchIngredients, fetchName, fetchFirstLetterDrinks,
 import CategoryFilter from '../CategoryFilter/Index';
 import styles from './Header.module.css';
 import iconeprato from '../../images/icone-prato.svg';
+import iconetaça from '../../images/icone-bebida.svg';
 import iconeRecipes from '../../images/ícone Recipes app.svg';
+import logoRecipies from '../../images/logo Recipes app.png';
 
 const initial = {
   searchText: '',
@@ -117,30 +119,37 @@ export default function Header({ title, search, profile }: HeaderProps) {
   };
 
   return (
-    <header>
-      <div className={ styles.button }>
+    <header className={ styles.all }>
+      <div className={ styles.container }>
         <img src={ iconeRecipes } alt="recipe icon" />
-        {search && (
-          <button
-            onClick={ toggleSearchVisibility }
-          >
-            <img
-              src={ searchIcon }
-              alt="pesquisar"
-              data-testid="search-top-btn"
-            />
-          </button>
-        )}
-        {profile && (
-          <button
-            onClick={ () => navigate('/profile') }
-          >
-            <img src={ profileIcon } alt="perfil" data-testid="profile-top-btn" />
-          </button>
-        )}
+        <img src={ logoRecipies } alt="logo" className={ styles.logo } />
+        <div>
+          {search && (
+            <button
+              className={ styles.button }
+              onClick={ toggleSearchVisibility }
+            >
+              <img
+                src={ searchIcon }
+                alt="pesquisar"
+                data-testid="search-top-btn"
+              />
+            </button>
+          )}
+          {profile && (
+            <button
+              className={ styles.button }
+              onClick={ () => navigate('/profile') }
+            >
+              <img src={ profileIcon } alt="perfil" data-testid="profile-top-btn" />
+            </button>
+          )}
+        </div>
       </div>
       <div>
-        <img className={ styles.icone } src={ iconeprato } alt="logo" />
+        {(pathname === '/meals'
+          ? <img className={ styles.icone } src={ iconeprato } alt="logo" />
+          : <img className={ styles.icone } src={ iconetaça } alt="logo" />)}
         <h1 className={ styles.h1 } data-testid="page-title">{title}</h1>
       </div>
       {isSearchVisible && (

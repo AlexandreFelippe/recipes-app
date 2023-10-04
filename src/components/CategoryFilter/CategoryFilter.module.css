@@ -4,13 +4,23 @@
 }
 
 .categoryButton {
+  align-items: center;
   background-color: transparent;
   border: none;
   color: #797d86;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   font-family: Epilogue , sans-serif;
   font-size: 9px;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
   text-align: center;
+}
+
+.allButton {
+  border: 1.811px solid #fcc436;
+  border-radius: 45.28px;
+  padding: 5px;
 }
