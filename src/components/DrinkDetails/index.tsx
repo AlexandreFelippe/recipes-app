@@ -3,6 +3,9 @@ import { useCallback, useEffect, useState } from 'react';
 import Header from '../Header/index';
 import { fetchDrinksRecipesDetails, fetchMealsApi } from '../../utils/SearchApi';
 import './style.css';
+import shortcake from '../../images/🦆 emoji _shortcake_.svg';
+import shareIcon from '../../images/Share.svg';
+import like from '../../images/like.svg';
 import share from '../../images/shareIcon.svg';
 import blackHeart from '../../images/blackHeartIcon.svg';
 import whiteHeart from '../../images/whiteHeartIcon.svg';
@@ -96,41 +99,84 @@ export default function DrinkDetails() {
       {Array.isArray(drinks) && drinks.map((drink: any, index: any) => (
         <div key={ index }>
           <div>
-            <h3 data-testid="recipe-title">{ drink.strDrink }</h3>
-            <button data-testid="share-btn" onClick={ handleShareClick }>
-              <img src={ share } alt="share" />
-            </button>
-            <input
-              type="image"
-              src={ favorite ? blackHeart : whiteHeart }
-              alt="Favorite"
-              data-testid="favorite-btn"
-              onClick={ saveFavorite }
+            <img
+              data-testid="recipe-photo"
+              src={ drink.strDrinkThumb }
+              alt={ drink.strDrink }
+              className="img-details2"
             />
-            { copied && <span>Link copied!</span> }
+            <div>
+              <h3
+                data-testid="recipe-title"
+                className="title-details"
+              >
+                { drink.strDrink }
+              </h3>
+              <button
+                data-testid="share-btn"
+                onClick={ handleShareClick }
+                className="share-btn"
+              >
+                <img src={ shareIcon } alt="share" />
+              </button>
+              <input
+                className="favorite-btn"
+                type="image"
+                src={ favorite ? like : whiteHeart }
+                alt="Favorite"
+                data-testid="favorite-btn"
+                onClick={ saveFavorite }
+              />
+              { copied && <span>Link copied!</span> }
+              <p
+                data-testid="recipe-category"
+                className="category"
+              >
+                { drink.strAlcoholic }
+              </p>
+            </div>
           </div>
-          <img
-            data-testid="recipe-photo"
-            src={ drink.strDrinkThumb }
-            alt={ drink.strDrink }
-          />
-          <p data-testid="recipe-category">{ drink.strAlcoholic }</p>
-          <p data-testid="instructions">{ drink.strInstructions }</p>
+          <h3
+            className="h3"
+          >
+            Ingredientes
+          </h3>
+          <div
+            className="conteiner"
+          >
+            <ul>
+              {getIngredients().map((ingredient, index2) => (
+                <li
+                  data-testid={ `${index2}-ingredient-name-and-measure` }
+                  key={ index2 }
+                >
+                  {ingredient}
+
+                </li>
+              ))}
+            </ul>
+          </div>
+          <h3
+            className="h3"
+          >
+            Instructions
+          </h3>
+          <div
+            className="conteiner"
+          >
+            <p
+              data-testid="instructions"
+            >
+              { drink.strInstructions }
+            </p>
+          </div>
         </div>
       ))}
-      <h3>Ingredientes</h3>
-      <ul>
-        {getIngredients().map((ingredient, index) => (
-          <li
-            data-testid={ `${index}-ingredient-name-and-measure` }
-            key={ index }
-          >
-            {ingredient}
-
-          </li>
-        ))}
-      </ul>
-      <h3>Recomendados</h3>
+      <h3
+        className="h3"
+      >
+        Recomendados
+      </h3>
       <div className="container-recommended-meals">
         <div className="meals-recommended">
           {Array.isArray(mealsSlice) && mealsSlice.map((meal, index) => (
