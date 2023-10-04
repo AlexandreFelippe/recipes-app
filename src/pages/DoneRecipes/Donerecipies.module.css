@@ -1,0 +1,41 @@
+.buttonBox {
+  align-items: center;
+  color: #797d86;
+  display: flex;
+  font-family: Epilogue , sans-serif;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 300;
+  justify-content: space-around;
+  line-height: normal;
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.filterButtons {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.allImage {
+  flex-shrink: 0;
+  height: 31.089px;
+  margin-bottom: 5px;
+  width: 31.089px;
+}
+
+.mealsImage {
+  flex-shrink: 0;
+  height: 29.532px;
+  margin-bottom: 5px;
+  width: 40.334px;
+}
+
+.drinksImage {
+  flex-shrink: 0;
+  height: 25.123px;
+  margin-bottom: 5px;
+  width: 24.61px;
+}

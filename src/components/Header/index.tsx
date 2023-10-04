@@ -121,12 +121,12 @@ export default function Header({ title, search, profile }: HeaderProps) {
   return (
     <header className={ styles.all }>
       <div className={ styles.container }>
-        <img src={ iconeRecipes } alt="recipe icon" />
+        <img src={ iconeRecipes } alt="recipe icon" className={ styles.tampa } />
         <img src={ logoRecipies } alt="logo" className={ styles.logo } />
         <div>
           {search && (
             <button
-              className={ styles.button }
+              className={ `${styles.button}` }
               onClick={ toggleSearchVisibility }
             >
               <img
@@ -148,19 +148,20 @@ export default function Header({ title, search, profile }: HeaderProps) {
       </div>
       <div>
         {(pathname === '/meals'
-          ? <img className={ styles.icone } src={ iconeprato } alt="logo" />
-          : <img className={ styles.icone } src={ iconetaça } alt="logo" />)}
+          ? <img className={ styles.icone } src={ iconeprato } alt="meal icon" />
+          : <img className={ styles.icone } src={ iconetaça } alt="drink icon" />)}
         <h1 className={ styles.h1 } data-testid="page-title">{title}</h1>
       </div>
       {isSearchVisible && (
         <>
           <input
+            className={ styles.input }
             data-testid="search-input"
             type="text"
             name="searchText"
             value={ searchData.searchText }
             onChange={ handleChange }
-            placeholder="Digite sua busca"
+            placeholder="Search"
           />
           <SearchBar
             searchData={ searchData }
