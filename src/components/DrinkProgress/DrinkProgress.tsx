@@ -1,9 +1,9 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchDrinksRecipesDetails } from '../../utils/SearchApi';
-import share from '../../images/shareIcon.svg';
+import share from '../../images/Share.svg';
 import blackHeart from '../../images/blackHeartIcon.svg';
-import whiteHeart from '../../images/whiteHeartIcon.svg';
+import whiteHeart from '../../images/like.svg';
 import './style.css';
 
 export default function DrinkProgress() {
@@ -149,25 +149,33 @@ export default function DrinkProgress() {
     <div>
       {Array.isArray(drinks) && drinks.map((drink: any, drinkIndex: any) => (
         <div key={ drinkIndex }>
-          <button data-testid="share-btn" onClick={ handleShareClick }>
-            <img src={ share } alt="share" />
-          </button>
-          <input
-            type="image"
-            src={ favorite ? blackHeart : whiteHeart }
-            alt="Favorite"
-            data-testid="favorite-btn"
-            onClick={ saveFavorite }
-          />
+          <div className="allButtons">
+            <button
+              data-testid="share-btn"
+              onClick={ handleShareClick }
+              className="shareButton"
+            >
+              <img src={ share } alt="share" />
+            </button>
+            <input
+              className="favorite-btn"
+              type="image"
+              src={ favorite ? blackHeart : whiteHeart }
+              alt="Favorite"
+              data-testid="favorite-btn"
+              onClick={ saveFavorite }
+            />
+          </div>
           { copied && <span>Link copied!</span> }
-          <h3 data-testid="recipe-title">{ drink.strDrink }</h3>
+          <h3 className="h3" data-testid="recipe-title">{ drink.strDrink }</h3>
           <img
+            className="image"
             data-testid="recipe-photo"
             src={ drink.strDrinkThumb }
             alt={ drink.strDrink }
           />
           <p data-testid="recipe-category">{ drink.strAlcoholic }</p>
-          <p data-testid="instructions">{ drink.strInstructions }</p>
+          <h4 className="h4">Ingredients</h4>
           <ul className="label-ingredient">
             {getIngredients(drink).map((ingredient, index) => (
               <div key={ index }>
@@ -177,6 +185,7 @@ export default function DrinkProgress() {
                     ? 'line-through solid rgb(0, 0, 0)' : 'none' } }
                 >
                   <input
+                    className="checkbox"
                     type="checkbox"
                     checked={ checkedIngredients[index] }
                     onChange={ () => toggleIngredient(index) }
@@ -186,8 +195,16 @@ export default function DrinkProgress() {
               </div>
             ))}
           </ul>
+          <h4 className="h4">Instructions</h4>
+          <p
+            className="instructions"
+            data-testid="instructions"
+          >
+            { drink.strInstructions }
+          </p>
+
           <button
-            className="start-recipes-btn"
+            className="finish-recipes-btn"
             data-testid="finish-recipe-btn"
             disabled={ !activeFinishRecipeButton() }
             style={ { position: 'fixed', bottom: '0' } }
