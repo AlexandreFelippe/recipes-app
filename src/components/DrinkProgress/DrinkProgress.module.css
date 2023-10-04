@@ -1,4 +1,4 @@
-.finish-recipes-btn {
+.finishRecipesBtn {
   background: #fcc436;
   border: none;
   border-radius: 5px;
@@ -61,7 +61,7 @@
   text-transform: uppercase;
 }
 
-.label-ingredient {
+.labelISngredient {
   background: white;
   border: 0.554px solid #b1b1b1;
   border-radius: 5.351px;
