@@ -30,15 +30,6 @@
   z-index: 1;
 }
 
-/* .allButtons {
-  align-content: right;
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  margin-top: 10px;
-  position: absolute;
-} */
-
 .shareButton {
   background: transparent;
   border: none;

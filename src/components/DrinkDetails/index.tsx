@@ -3,11 +3,8 @@ import { useCallback, useEffect, useState } from 'react';
 import Header from '../Header/index';
 import { fetchDrinksRecipesDetails, fetchMealsApi } from '../../utils/SearchApi';
 import './style.css';
-import shortcake from '../../images/🦆 emoji _shortcake_.svg';
 import shareIcon from '../../images/Share.svg';
 import like from '../../images/like.svg';
-import share from '../../images/shareIcon.svg';
-import blackHeart from '../../images/blackHeartIcon.svg';
 import whiteHeart from '../../images/whiteHeartIcon.svg';
 
 export default function DrinkDetails() {

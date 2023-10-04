@@ -1,6 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import style from './Profile.module.css';
+import doneIcon from '../../images/Group 10.svg';
+import favoriteIcon from '../../images/Group 9.svg';
+import loginIcon from '../../images/Group 8.svg';
+import profileIcon from '../../images/Perfil.svg';
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -22,30 +27,66 @@ export default function Profile() {
   return (
     <>
       <Header title="Profile" search={ false } profile />
-      <div>Profile</div>
-      <h3 data-testid="profile-email">{getEmail()}</h3>
+      <img
+        src={ profileIcon }
+        alt="profile"
+        className={ style.profileIcon }
+      />
+      <h3
+        data-testid="profile-email"
+        className={ style.email }
+      >
+        {getEmail()}
+      </h3>
       <div>
-        <button
-          data-testid="profile-done-btn"
-          onClick={ () => navigate('/done-recipes') }
+        <div
+          className={ style.divDone }
         >
-          Done Recipes
-
-        </button>
-        <button
-          onClick={ () => navigate('/favorite-recipes') }
-          data-testid="profile-favorite-btn"
+          <img
+            src={ doneIcon }
+            alt="done"
+            className={ style.DoneImg }
+          />
+          <button
+            data-testid="profile-done-btn"
+            onClick={ () => navigate('/done-recipes') }
+            className={ style.Donebuttons }
+          >
+            Done Recipes
+          </button>
+        </div>
+        <div
+          className={ style.divFavorite }
         >
-          Favorite Recipes
-
-        </button>
-        <button
-          onClick={ handleLogout }
-          data-testid="profile-logout-btn"
+          <button
+            onClick={ () => navigate('/favorite-recipes') }
+            data-testid="profile-favorite-btn"
+            className={ style.favoriteButtons }
+          >
+            Favorite Recipes
+            <img
+              src={ favoriteIcon }
+              alt="favorite"
+              className={ style.favoriteImg }
+            />
+          </button>
+        </div>
+        <div
+          className={ style.divLogout }
         >
-          Logout
-
-        </button>
+          <button
+            onClick={ handleLogout }
+            data-testid="profile-logout-btn"
+            className={ style.logoutButtons }
+          >
+            Logout
+            <img
+              src={ loginIcon }
+              alt="logout"
+              className={ style.logoutImg }
+            />
+          </button>
+        </div>
       </div>
       <Footer />
     </>
