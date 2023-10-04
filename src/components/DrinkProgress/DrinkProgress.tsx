@@ -4,7 +4,7 @@ import { fetchDrinksRecipesDetails } from '../../utils/SearchApi';
 import share from '../../images/Share.svg';
 import blackHeart from '../../images/blackHeartIcon.svg';
 import whiteHeart from '../../images/like.svg';
-import './style.css';
+import styles from './DrinkProgress.module.css';
 
 export default function DrinkProgress() {
   const [drinks, setDrinks] = useState<any>();
@@ -149,16 +149,15 @@ export default function DrinkProgress() {
     <div>
       {Array.isArray(drinks) && drinks.map((drink: any, drinkIndex: any) => (
         <div key={ drinkIndex }>
-          <div className="allButtons">
+          <div className={ styles.allButtons }>
             <button
               data-testid="share-btn"
               onClick={ handleShareClick }
-              className="shareButton"
+              className={ styles.shareButton }
             >
               <img src={ share } alt="share" />
             </button>
             <input
-              className="favorite-btn"
               type="image"
               src={ favorite ? blackHeart : whiteHeart }
               alt="Favorite"
@@ -167,16 +166,16 @@ export default function DrinkProgress() {
             />
           </div>
           { copied && <span>Link copied!</span> }
-          <h3 className="h3" data-testid="recipe-title">{ drink.strDrink }</h3>
+          <h3 className={ styles.h3 } data-testid="recipe-title">{ drink.strDrink }</h3>
           <img
-            className="image"
+            className={ styles.image }
             data-testid="recipe-photo"
             src={ drink.strDrinkThumb }
             alt={ drink.strDrink }
           />
           <p data-testid="recipe-category">{ drink.strAlcoholic }</p>
-          <h4 className="h4">Ingredients</h4>
-          <ul className="label-ingredient">
+          <h4 className={ styles.h4 }>Ingredients</h4>
+          <ul className={ styles.labelISngredient }>
             {getIngredients(drink).map((ingredient, index) => (
               <div key={ index }>
                 <label
@@ -185,7 +184,7 @@ export default function DrinkProgress() {
                     ? 'line-through solid rgb(0, 0, 0)' : 'none' } }
                 >
                   <input
-                    className="checkbox"
+                    className={ styles.checkbox }
                     type="checkbox"
                     checked={ checkedIngredients[index] }
                     onChange={ () => toggleIngredient(index) }
@@ -195,16 +194,16 @@ export default function DrinkProgress() {
               </div>
             ))}
           </ul>
-          <h4 className="h4">Instructions</h4>
+          <h4 className={ styles.h4 }>Instructions</h4>
           <p
-            className="instructions"
+            className={ styles.instructions }
             data-testid="instructions"
           >
             { drink.strInstructions }
           </p>
 
           <button
-            className="finish-recipes-btn"
+            className={ styles.finishRecipeBtn }
             data-testid="finish-recipe-btn"
             disabled={ !activeFinishRecipeButton() }
             style={ { position: 'fixed', bottom: '0' } }
