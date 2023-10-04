@@ -25,3 +25,9 @@
   margin-right: 2px;
   scroll-snap-align: start;
 }
+
+.container-details {
+  background: white;
+  height: 1438px;
+  width: 360px;
+}

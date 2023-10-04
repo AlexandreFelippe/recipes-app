@@ -1,8 +1,16 @@
 .footer {
+  background: #41197f;
   bottom: 0;
   display: flex;
   flex-flow: row;
+  height: 52px;
   justify-content: space-between;
   position: fixed;
   width: 100%;
+}
+
+.button-footer {
+  background: transparent;
+  border: none;
+  width: 30%;
 }
