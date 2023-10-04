@@ -18,7 +18,24 @@ h1 {
   width: 40.334px;
 }
 
-.button {
+.container {
+  align-content: center;
+  align-items: center;
+  background-color: #fcdc36;
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
+}
+
+.logo {
+  flex-shrink: 0;
+  height: 16.972px;
+  justify-content: center;
+
+  /* margin-top: 15px; */
+  width: 109.131px;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
 }

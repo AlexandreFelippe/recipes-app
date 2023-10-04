@@ -6,6 +6,7 @@ import { mealsCategorySearch,
 import { fetchMealsCategory, fetchDrinksCategory,
   fetchDrinksFiltered, fetchMealsFiltered } from '../../utils/SearchApi';
 import prato from '../../images/icone-prato.svg';
+import iconeBebida from '../../images/icone-bebida.svg';
 import imagestocategory from './imagestocategory';
 import style from './CategoryFilter.module.css';
 
@@ -64,6 +65,14 @@ export default function CategoryFilter() {
     <div className={ style.container }>
       {pathname === '/meals' && (
         <>
+          <button
+            className={ style.categoryButton }
+            data-testid="All-category-filter"
+            onClick={ handleResetCategory }
+          >
+            <img src={ prato } alt="All foods" className={ style.allButton } />
+            All
+          </button>
           {mealsSlice.map((meal: any, index: string) => (
             <button
               className={ style.categoryButton }
@@ -75,35 +84,29 @@ export default function CategoryFilter() {
               {meal.strCategory}
             </button>
           ))}
+        </>
+      )}
+      {pathname === '/drinks' && (
+        <>
           <button
             className={ style.categoryButton }
             data-testid="All-category-filter"
             onClick={ handleResetCategory }
           >
-            <img src={ prato } alt="All foods" />
+            <img src={ iconeBebida } alt="All foods" className={ style.allButton } />
             All
           </button>
-        </>
-      )}
-      {pathname === '/drinks' && (
-        <>
           {drinksSlice.map((drink: any, index: string) => (
             <button
+              className={ style.categoryButton }
               key={ index }
               data-testid={ `${drink.strCategory}-category-filter` }
               onClick={ handleClickFilterDrinks }
-
             >
+              {imagestocategory(drink.strCategory)}
               {drink.strCategory}
             </button>
           ))}
-          <button
-            data-testid="All-category-filter"
-            onClick={ handleResetCategory }
-          >
-            All
-
-          </button>
         </>
       )}
     </div>
