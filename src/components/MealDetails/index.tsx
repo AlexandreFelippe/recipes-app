@@ -91,12 +91,18 @@ export default function MealDetails() {
   };
 
   return (
-    <>
+    <div
+      className="container-details"
+    >
       <Header title="MealsDetails" search={ false } profile />
       {Array.isArray(meals) && meals.map((meal: any, index: any) => (
         <div key={ index }>
           <div>
-            <h3 data-testid="recipe-title">{meal.strMeal }</h3>
+            <h3
+              data-testid="recipe-title"
+            >
+              {meal.strMeal }
+            </h3>
             <button data-testid="share-btn" onClick={ handleShareClick }>
               <img src={ share } alt="share" />
             </button>
@@ -163,6 +169,6 @@ export default function MealDetails() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
