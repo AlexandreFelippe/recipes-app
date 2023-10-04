@@ -31,3 +31,117 @@
   height: 1438px;
   width: 360px;
 }
+
+
+.share-btn {
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: 5px;
+  top: 33px;
+  width: 40%;
+  z-index: 2;
+}
+
+.favorite-btn {
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  width: 7 , 5%;
+  z-index: 2;
+}
+
+.category {
+  background: transparent;
+  border: none;
+  left: 60px;
+  position: absolute;
+  top: 20px;
+  width: 8%;
+  z-index: 2;
+}
+
+.title-details {
+  color: white;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 2.1px;
+  line-height: normal;
+  position: absolute;
+  right: 115px;
+  text-align: center;
+  text-transform: uppercase;
+  top: 35px;
+  z-index: 2;
+}
+
+.shortcake {
+  background: transparent;
+  border: none;
+  left: 15px;
+  position: absolute;
+  top: 30px;
+  width: 8%;
+  z-index: 2;
+}
+
+.img-details {
+  height: 161.854px;
+  margin-block-start: -160px;
+  margin-left: -40px;
+  margin-right: 40px;
+  padding: 40px;
+  width: 362.012px;
+  z-index: 1;
+}
+
+.conteiner {
+  background: white;
+  border: 0.554px solid #b1b1b1;
+  border-radius: 5.351px;
+  flex-shrink: 0;
+  height: auto;
+  width: auto;
+
+}
+
+.list-ingredients {
+  color: #1a1b1c;
+  font-family: Epilogue , sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  height: 100%;
+  line-height: normal;
+}
+
+.h3 {
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.instructions {
+  color: #1a1b1c;
+  font-family: Epilogue , sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 113%; /* 15.82px */
+  padding: 7px;
+}
+
+.video {
+  height: 205px;
+  padding: 7px;
+  width: 336px;
+}

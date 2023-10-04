@@ -3,8 +3,9 @@ import { useEffect, useState, useCallback } from 'react';
 import Header from '../Header';
 import { fetchMealsRecipesDetails, fetchDrinksApi } from '../../utils/SearchApi';
 import './styles.css';
-import share from '../../images/shareIcon.svg';
-import blackHeart from '../../images/blackHeartIcon.svg';
+import shortcake from '../../images/🦆 emoji _shortcake_.svg';
+import shareIcon from '../../images/Share.svg';
+import like from '../../images/like.svg';
 import whiteHeart from '../../images/whiteHeartIcon.svg';
 
 export default function MealDetails() {
@@ -94,35 +95,92 @@ export default function MealDetails() {
     <div
       className="container-details"
     >
-      <Header title="MealsDetails" search={ false } profile />
+      <Header title="" search={ false } profile />
       {Array.isArray(meals) && meals.map((meal: any, index: any) => (
         <div key={ index }>
           <div>
-            <h3
-              data-testid="recipe-title"
-            >
-              {meal.strMeal }
-            </h3>
-            <button data-testid="share-btn" onClick={ handleShareClick }>
-              <img src={ share } alt="share" />
-            </button>
-            <input
-              type="image"
-              src={ favorite ? blackHeart : whiteHeart }
-              alt="Favorite"
-              data-testid="favorite-btn"
-              onClick={ saveFavorite }
+            <img
+              src={ meal.strMealThumb }
+              alt={ meal.strMeal }
+              data-testid="recipe-photo"
+              className="img-details"
             />
-            { copied && <span>Link copied!</span> }
+            <div>
+              <h3
+                data-testid="recipe-title"
+                className="title-details"
+              >
+                {meal.strMeal }
+              </h3>
+              <button
+                data-testid="share-btn"
+                onClick={ handleShareClick }
+                className="share-btn"
+              >
+                <img src={ shareIcon } alt="share" />
+              </button>
+              <img
+                src={ shortcake }
+                alt="like"
+                className="shortcake"
+              />
+              <input
+                className="favorite-btn"
+                type="image"
+                src={ favorite ? like : whiteHeart }
+                alt="Favorite"
+                data-testid="favorite-btn"
+                onClick={ saveFavorite }
+              />
+              { copied && <span>Link copied!</span> }
+              <p
+                data-testid="recipe-category"
+                className="category"
+              >
+                { meal.strCategory }
+              </p>
+            </div>
           </div>
-          <img
-            src={ meal.strMealThumb }
-            alt={ meal.strMeal }
-            data-testid="recipe-photo"
-          />
-          <p data-testid="recipe-category">{ meal.strCategory }</p>
-          <p data-testid="instructions">{ meal.strInstructions }</p>
+          <h3
+            className="h3"
+          >
+            Ingredients
+          </h3>
+          <div className="conteiner">
+            <ul
+              className="list-ingredients"
+            >
+              {getIngredients().map((ingredient, index2) => (
+                <li
+                  data-testid={ `${index2}-ingredient-name-and-measure` }
+                  key={ index2 }
+                >
+                  {ingredient}
+
+                </li>
+              ))}
+            </ul>
+          </div>
+          <h3
+            className="h3"
+          >
+            Instructions
+          </h3>
+          <div className="conteiner">
+            <p
+              data-testid="instructions"
+              className="instructions"
+            >
+              { meal.strInstructions }
+            </p>
+          </div>
+          <h3
+            className="h3"
+          >
+            Video
+          </h3>
           <iframe
+            className="video"
             data-testid="video"
             width="560"
             height="315"
@@ -132,18 +190,6 @@ export default function MealDetails() {
           />
         </div>
       ))}
-      <h3>Ingredientes</h3>
-      <ul>
-        {getIngredients().map((ingredient, index) => (
-          <li
-            data-testid={ `${index}-ingredient-name-and-measure` }
-            key={ index }
-          >
-            {ingredient}
-
-          </li>
-        ))}
-      </ul>
       <h3>Recomendados</h3>
       <div className="container-recommended-drinks">
         <div className="drinks-recommended">

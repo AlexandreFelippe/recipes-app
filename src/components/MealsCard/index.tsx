@@ -27,6 +27,7 @@ export default function MealsCard() {
               { meal.strMeal }
             </h3>
             <img
+              className={ styles.img }
               data-testid={ `${index}-card-img` }
               src={ meal.strMealThumb }
               alt={ meal.strMeal }
