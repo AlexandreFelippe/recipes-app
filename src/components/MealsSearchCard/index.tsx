@@ -1,19 +1,31 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReduxState } from '../../types';
+import styles from './MealsSearchCard.module.css';
 
 export default function MealsSearchCard() {
   const { meals } = useSelector((state: ReduxState) => state.mealsSearch);
   const mealsData = meals.slice(0, 12);
+
   return (
-    <>
+    <div className={ styles.container }>
       {mealsData.map((meal, index) => (
         <Link
+          className={ styles.box }
           key={ index }
           to={ `/meals/${meal.idMeal}` }
         >
-          <div key={ meal.strMeal } data-testid={ `${index}-recipe-card` }>
-            <h3 data-testid={ `${index}-card-name` }>{ meal.strMeal }</h3>
+          <div
+            className={ styles.meals }
+            key={ meal.strMeal }
+            data-testid={ `${index}-recipe-card` }
+          >
+            <h3
+              className={ styles.h3 }
+              data-testid={ `${index}-card-name` }
+            >
+              { meal.strMeal }
+            </h3>
             <img
               data-testid={ `${index}-card-img` }
               src={ meal.strMealThumb }
@@ -22,6 +34,6 @@ export default function MealsSearchCard() {
           </div>
         </Link>
       ))}
-    </>
+    </div>
   );
 }
