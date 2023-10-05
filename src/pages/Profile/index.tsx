@@ -26,12 +26,19 @@ export default function Profile() {
 
   return (
     <>
-      <Header title="Profile" search={ false } profile />
+      <div className={ style.header }>
+        <Header title="" search={ false } profile />
+      </div>
       <img
         src={ profileIcon }
         alt="profile"
         className={ style.profileIcon }
       />
+      <h1
+        className={ style.title }
+      >
+        PROFILE
+      </h1>
       <h3
         data-testid="profile-email"
         className={ style.email }
@@ -42,11 +49,6 @@ export default function Profile() {
         <div
           className={ style.divDone }
         >
-          <img
-            src={ doneIcon }
-            alt="done"
-            className={ style.DoneImg }
-          />
           <button
             data-testid="profile-done-btn"
             onClick={ () => navigate('/done-recipes') }
@@ -54,6 +56,11 @@ export default function Profile() {
           >
             Done Recipes
           </button>
+          <img
+            src={ doneIcon }
+            alt="done"
+            className={ style.divImg }
+          />
         </div>
         <div
           className={ style.divFavorite }

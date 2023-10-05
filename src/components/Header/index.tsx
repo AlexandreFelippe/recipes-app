@@ -150,7 +150,9 @@ export default function Header({ title, search, profile }: HeaderProps) {
         {(pathname === '/meals'
           ? <img className={ styles.icone } src={ iconeprato } alt="meal icon" />
           : <img className={ styles.icone } src={ iconetaça } alt="drink icon" />)}
-        <h1 className={ styles.h1 } data-testid="page-title">{title}</h1>
+        <h1 className={ styles.h1 } data-testid="page-title">
+          {title}
+        </h1>
       </div>
       {isSearchVisible && (
         <>

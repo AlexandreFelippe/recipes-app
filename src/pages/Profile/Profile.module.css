@@ -1,41 +1,72 @@
+.header {
+  height: 55px;
+  z-index: 0;
+}
+
+.title {
+  color: #41197f;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 2.1px;
+  line-height: normal;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .profileIcon {
+  align-items: center;
+  background: white;
   display: block;
-  height: 100px;
-  margin: 20px auto;
-  width: 100px;
+  height: 28.71px;
+  margin: 16px auto;
+  padding: 10px;
+  position: relative;
+  width: 28.71px;
+  z-index: 1;
 }
 
 .email {
-  background-color: white;
-  border-radius: 5px;
-  box-sizing: border-box;
-  display: inline-block;
-  font-size: 20px;
+  color: #1a1b1c;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
   font-weight: 700;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  padding: 10px;
+  height: 12px;
+  line-height: normal;
+  margin-left: 44px;
+  margin-top: 30px;
   text-align: center;
-  text-decoration: none;
-  width: 100%;
+  width: 273px;
 }
 
 .divDone {
+  margin-top: 60px;
   text-align: center;
 }
 
-.DoneImg {
-  height: 40px;
-  width: 40px;
+.divImg {
+  height: 20px;
+  text-align: center;
+  width: 20px;
 }
 
 .Donebuttons {
-  background-color: yellow;
+  align-items: center;
+  background-color: transparent;
   border: none;
-  color: purple;
+  color: #797d86;
   cursor: pointer;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.48px;
+  line-height: normal;
   margin-top: 10px;
   padding: 10px 20px;
+  text-transform: capitalize;
 }
 
 .divFavorite {
@@ -44,11 +75,19 @@
 }
 
 .favoriteButtons {
-  background-color: yellow;
+  background-color: transparent;
   border: none;
-  color: purple;
+  color: #797d86;
   cursor: pointer;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.48px;
+  line-height: normal;
+  margin-top: 20px;
   padding: 10px 20px;
+  text-transform: capitalize;
 }
 
 .favoriteImg {
@@ -64,11 +103,19 @@
 }
 
 .logoutButtons {
-  background-color: yellow;
+  background-color: transparent;
   border: none;
-  color: purple;
+  color: #797d86;
   cursor: pointer;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.48px;
+  line-height: normal;
+  margin-top: 20px;
   padding: 10px 20px;
+  text-transform: capitalize;
 }
 
 .logoutImg {
