@@ -5,6 +5,7 @@ import share from '../../images/shareIcon.svg';
 import all from '../../images/🦆 icon _fast food outline_.svg';
 import meals from '../../images/icone-prato.svg';
 import drinks from '../../images/icone-bebida.svg';
+import done from '../../images/Group 10.svg';
 import styles from './Donerecipies.module.css';
 
 export default function DoneRecipes() {
@@ -50,8 +51,11 @@ export default function DoneRecipes() {
 
   return (
     <>
-      <Header title="Done Recipes" search={ false } profile />
-      <br />
+      <div className={ styles.header }>
+        <Header title="" search={ false } profile />
+      </div>
+      <img src={ done } alt="done" className={ styles.doneImage } />
+      <h1>Done Recipes</h1>
       <div className={ styles.buttonBox }>
         <button
           className={ styles.filterButtons }

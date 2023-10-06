@@ -8,7 +8,6 @@ function StartRecipeBtn({ handleClick }: any) {
       onClick={ handleClick }
     >
       Start Recipe
-
     </button>
   );
 }
